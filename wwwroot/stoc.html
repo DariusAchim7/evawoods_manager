@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stoc - Atelier Tâmplărie</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🔨 Atelier Tâmplărie</h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">📊 Dashboard</a></li>
+            <li><a href="clienti.html">👥 Clienți</a></li>
+            <li><a href="proiecte.html">📁 Proiecte</a></li>
+            <li><a href="stoc.html" class="active">📦 Stoc</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Statistici Stoc -->
+        <div class="stats-grid">
+            <div class="stat-card info">
+                <h3>Valoare Totală</h3>
+                <div class="value" id="valoare-totala">-</div>
+                <div class="label">Inventar complet</div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section-header">
+                <h2>📦 Gestionare Stoc</h2>
+                <div>
+                    <select id="filter-categorie" onchange="filterByCategorie()">
+                        <option value="">Toate categoriile</option>
+                        <option value="lemn">Lemn</option>
+                        <option value="feronerie">Feronerie</option>
+                        <option value="consumabile">Consumabile</option>
+                        <option value="scule">Scule</option>
+                        <option value="altele">Altele</option>
+                    </select>
+                    <button class="btn btn-success" onclick="openMiscareModal()">➕/➖ Mișcare Stoc</button>
+                    <button class="btn btn-primary" onclick="openAddModal()">➕ Adaugă Produs</button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Produs</th>
+                            <th>Categorie</th>
+                            <th>Cantitate</th>
+                            <th>Unitate</th>
+                            <th>Preț Unitar</th>
+                            <th>Valoare Totală</th>
+                            <th>Locație</th>
+                            <th>Acțiuni</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stoc-tbody">
+                        <tr>
+                            <td colspan="8" class="text-center">Se încarcă...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Adaugă/Editează Produs -->
+    <div id="stocModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Adaugă Produs Nou</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            
+            <form id="stocForm" onsubmit="saveStoc(event)">
+                <input type="hidden" id="stoc-id">
+                
+                <div class="form-group">
+                    <label for="nume-produs">Nume Produs *</label>
+                    <input type="text" id="nume-produs" required placeholder="Ex: Lemn stejar 40mm">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="categorie">Categorie</label>
+                        <select id="categorie">
+                            <option value="">Selectează...</option>
+                            <option value="lemn">Lemn</option>
+                            <option value="feronerie">Feronerie</option>
+                            <option value="consumabile">Consumabile</option>
+                            <option value="scule">Scule</option>
+                            <option value="altele">Altele</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="unitate-masura">Unitate Măsură</label>
+                        <select id="unitate-masura">
+                            <option value="buc">Bucată (buc)</option>
+                            <option value="mp">Metru pătrat (mp)</option>
+                            <option value="ml">Metru liniar (ml)</option>
+                            <option value="kg">Kilogram (kg)</option>
+                            <option value="litru">Litru</option>
+                            <option value="set">Set</option>
+                            <option value="cutie">Cutie</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cantitate">Cantitate</label>
+                        <input type="number" id="cantitate" step="0.01" value="0">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pret-unitar">Preț Unitar (RON)</label>
+                        <input type="number" id="pret-unitar" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="furnizor">Furnizor</label>
+                        <input type="text" id="furnizor" placeholder="Ex: Furnizor Lemn SRL">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="locatie-depozit">Locație Depozit</label>
+                        <input type="text" id="locatie-depozit" placeholder="Ex: Depozit A - Raft 1">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="observatii-stoc">Observații</label>
+                    <textarea id="observatii-stoc" placeholder="Note despre produs..."></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Anulează</button>
+                    <button type="submit" class="btn btn-success">💾 Salvează</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Mișcare Stoc -->
+    <div id="miscareModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Înregistrează Mișcare Stoc</h3>
+                <button class="close-btn" onclick="closeMiscareModal()">&times;</button>
+            </div>
+            
+            <form id="miscareForm" onsubmit="saveMiscare(event)">
+                <div class="form-group">
+                    <label for="miscare-stoc-id">Produs *</label>
+                    <select id="miscare-stoc-id" required>
+                        <option value="">Selectează produs...</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tip-miscare">Tip Mișcare *</label>
+                        <select id="tip-miscare" required>
+                            <option value="intrare">➕ Intrare</option>
+                            <option value="iesire">➖ Ieșire</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cantitate-miscare">Cantitate *</label>
+                        <input type="number" id="cantitate-miscare" step="0.01" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="miscare-proiect-id">Proiect (opțional)</label>
+                    <select id="miscare-proiect-id">
+                        <option value="">Fără proiect asociat</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="motiv">Motiv</label>
+                    <input type="text" id="motiv" placeholder="Ex: Aprovizionare nouă / Utilizat pentru proiect">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeMiscareModal()">Anulează</button>
+                    <button type="submit" class="btn btn-success">💾 Înregistrează</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        let currentStocId = null;
+        let allStoc = [];
+
+        // Încarcă toate datele
+        async function loadData() {
+            try {
+                // Încarcă stoc
+                allStoc = await API.getStoc();
+                displayStoc(allStoc);
+
+                // Încarcă valoare totală
+                const valoare = await API.getStocValoare();
+                document.getElementById('valoare-totala').textContent = formatCurrency(valoare.valoareTotala);
+
+                // Încarcă date pentru mișcări
+                populateStocDropdown(allStoc);
+                
+                const proiecte = await API.getProiecte();
+                populateProiectDropdown(proiecte);
+            } catch (error) {
+                showError('Eroare la încărcarea datelor');
+            }
+        }
+
+        function displayStoc(stoc) {
+            const tbody = document.getElementById('stoc-tbody');
+            
+            if (!stoc || stoc.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">📦</div>
+                                <h3>Nu există produse în stoc</h3>
+                                <p>Adaugă primul produs pentru a începe</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = stoc.map(s => {
+                const alertClass = s.cantitate < 10 ? 'badge-danger' : '';
+                return `
+                <tr>
+                    <td><strong>${s.numeProdus}</strong></td>
+                    <td>${s.categorie || '-'}</td>
+                    <td><span class="badge ${alertClass}">${formatNumber(s.cantitate)}</span></td>
+                    <td>${s.unitateMasura}</td>
+                    <td>${formatCurrency(s.pretUnitar)}</td>
+                    <td><strong>${formatCurrency(s.valoareTotala)}</strong></td>
+                    <td>${s.locatieDepozit || '-'}</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="editStoc(${s.id})">✏️</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteStoc(${s.id}, '${s.numeProdus}')">🗑️</button>
+                    </td>
+                </tr>
+            `}).join('');
+        }
+
+        function populateStocDropdown(stoc) {
+            const select = document.getElementById('miscare-stoc-id');
+            select.innerHTML = '<option value="">Selectează produs...</option>' + 
+                stoc.map(s => `<option value="${s.id}">${s.numeProdus} (${formatNumber(s.cantitate)} ${s.unitateMasura})</option>`).join('');
+        }
+
+        function populateProiectDropdown(proiecte) {
+            const select = document.getElementById('miscare-proiect-id');
+            select.innerHTML = '<option value="">Fără proiect asociat</option>' + 
+                proiecte.filter(p => p.status !== 'finalizat' && p.status !== 'anulat')
+                    .map(p => `<option value="${p.id}">${p.numeProiect}</option>`).join('');
+        }
+
+        async function filterByCategorie() {
+            const categorie = document.getElementById('filter-categorie').value;
+            
+            if (!categorie) {
+                displayStoc(allStoc);
+                return;
+            }
+
+            try {
+                const filtered = await API.getStocByCategorie(categorie);
+                displayStoc(filtered);
+            } catch (error) {
+                showError('Eroare la filtrarea stocului');
+            }
+        }
+
+        function openAddModal() {
+            currentStocId = null;
+            document.getElementById('modal-title').textContent = 'Adaugă Produs Nou';
+            document.getElementById('stocForm').reset();
+            document.getElementById('stoc-id').value = '';
+            document.getElementById('stocModal').classList.add('active');
+        }
+
+        async function editStoc(id) {
+            try {
+                const stoc = await API.getStocItem(id);
+                currentStocId = id;
+                
+                document.getElementById('modal-title').textContent = 'Editează Produs';
+                document.getElementById('stoc-id').value = stoc.stoc.id;
+                document.getElementById('nume-produs').value = stoc.stoc.numeProdus;
+                document.getElementById('categorie').value = stoc.stoc.categorie || '';
+                document.getElementById('unitate-masura').value = stoc.stoc.unitateMasura;
+                document.getElementById('cantitate').value = stoc.stoc.cantitate;
+                document.getElementById('pret-unitar').value = stoc.stoc.pretUnitar || '';
+                document.getElementById('furnizor').value = stoc.stoc.furnizor || '';
+                document.getElementById('locatie-depozit').value = stoc.stoc.locatieDepozit || '';
+                document.getElementById('observatii-stoc').value = stoc.stoc.observatii || '';
+                
+                document.getElementById('stocModal').classList.add('active');
+            } catch (error) {
+                showError('Eroare la încărcarea datelor produsului');
+            }
+        }
+
+        async function saveStoc(event) {
+            event.preventDefault();
+            
+            const stocData = {
+                id: currentStocId || 0,
+                numeProdus: document.getElementById('nume-produs').value,
+                categorie: document.getElementById('categorie').value || null,
+                unitateMasura: document.getElementById('unitate-masura').value,
+                cantitate: parseFloat(document.getElementById('cantitate').value),
+                pretUnitar: parseFloat(document.getElementById('pret-unitar').value) || null,
+                furnizor: document.getElementById('furnizor').value || null,
+                locatieDepozit: document.getElementById('locatie-depozit').value || null,
+                observatii: document.getElementById('observatii-stoc').value || null
+            };
+
+            try {
+                if (currentStocId) {
+                    await API.updateStocItem(currentStocId, stocData);
+                    showSuccess('Produs actualizat cu succes!');
+                } else {
+                    await API.createStocItem(stocData);
+                    showSuccess('Produs adăugat cu succes!');
+                }
+                
+                closeModal();
+                loadData();
+            } catch (error) {
+                showError('Eroare la salvarea produsului');
+            }
+        }
+
+        async function deleteStoc(id, nume) {
+            if (confirmDelete(nume)) {
+                try {
+                    await API.deleteStocItem(id);
+                    showSuccess('Produs șters cu succes!');
+                    loadData();
+                } catch (error) {
+                    showError('Eroare la ștergerea produsului');
+                }
+            }
+        }
+
+        function openMiscareModal() {
+            document.getElementById('miscareForm').reset();
+            document.getElementById('miscareModal').classList.add('active');
+        }
+
+        async function saveMiscare(event) {
+            event.preventDefault();
+            
+            const miscareData = {
+                stocId: parseInt(document.getElementById('miscare-stoc-id').value),
+                tipMiscare: document.getElementById('tip-miscare').value,
+                cantitate: parseFloat(document.getElementById('cantitate-miscare').value),
+                proiectId: document.getElementById('miscare-proiect-id').value ? 
+                    parseInt(document.getElementById('miscare-proiect-id').value) : null,
+                motiv: document.getElementById('motiv').value || null
+            };
+
+            try {
+                await API.createMiscareStoc(miscareData);
+                showSuccess('Mișcare stoc înregistrată cu succes!');
+                closeMiscareModal();
+                loadData();
+            } catch (error) {
+                showError('Eroare la înregistrarea mișcării');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('stocModal').classList.remove('active');
+        }
+
+        function closeMiscareModal() {
+            document.getElementById('miscareModal').classList.remove('active');
+        }
+
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('stocModal')) {
+                closeModal();
+            }
+            if (event.target === document.getElementById('miscareModal')) {
+                closeMiscareModal();
+            }
+        }
+
+        // Încarcă datele la pornire
+        loadData();
+    </script>
+</body>
+</html>

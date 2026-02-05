@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proiecte - Atelier Tâmplărie</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🔨 Atelier Tâmplărie</h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">📊 Dashboard</a></li>
+            <li><a href="clienti.html">👥 Clienți</a></li>
+            <li><a href="proiecte.html" class="active">📁 Proiecte</a></li>
+            <li><a href="stoc.html">📦 Stoc</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="content-section">
+            <div class="section-header">
+                <h2>📁 Gestionare Proiecte</h2>
+                <div>
+                    <select id="filter-client" onchange="filterByClient()">
+                        <option value="">Toți clienții</option>
+                    </select>
+                    <select id="filter-status" onchange="filterByStatus()">
+                        <option value="">Toate proiectele</option>
+                        <option value="planificat">Planificate</option>
+                        <option value="in_lucru">În lucru</option>
+                        <option value="finalizat">Finalizate</option>
+                        <option value="anulat">Anulate</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="openAddModal()">➕ Adaugă Proiect</button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Proiect</th>
+                            <th>Client</th>
+                            <th>Status</th>
+                            <th>Data Start</th>
+                            <th>Preț Estimat</th>
+                            <th>Cheltuieli</th>
+                            <th>Profit</th>
+                            <th>Acțiuni</th>
+                        </tr>
+                    </thead>
+                    <tbody id="proiecte-tbody">
+                        <tr>
+                            <td colspan="8" class="text-center">Se încarcă...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Adaugă/Editează Proiect -->
+    <div id="proiectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Adaugă Proiect Nou</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            
+            <form id="proiectForm" onsubmit="saveProiect(event)">
+                <input type="hidden" id="proiect-id">
+                
+                <div class="form-group">
+                    <label for="nume-proiect">Nume Proiect *</label>
+                    <input type="text" id="nume-proiect" required placeholder="Ex: Mobilier bucătărie">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="client-id">Client *</label>
+                        <select id="client-id" required>
+                            <option value="">Selectează client...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="status">Status *</label>
+                        <select id="status" required>
+                            <option value="planificat">Planificat</option>
+                            <option value="in_lucru">În lucru</option>
+                            <option value="finalizat">Finalizat</option>
+                            <option value="anulat">Anulat</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="descriere">Descriere</label>
+                    <textarea id="descriere" placeholder="Detalii despre proiect..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="pret-estimat">Preț Estimat (RON)</label>
+                        <input type="number" id="pret-estimat" step="0.01" placeholder="0.00">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pret-final">Preț Final (RON)</label>
+                        <input type="number" id="pret-final" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="data-start">Data Start</label>
+                        <input type="date" id="data-start">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data-finalizare">Data Finalizare</label>
+                        <input type="date" id="data-finalizare">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="observatii">Observații</label>
+                    <textarea id="observatii" placeholder="Note despre proiect..."></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Anulează</button>
+                    <button type="submit" class="btn btn-success">💾 Salvează</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        let currentProiectId = null;
+        let allProiecte = [];
+
+        // Încarcă proiectele și clienții
+        async function loadData() {
+            try {
+                // Încarcă proiecte
+                allProiecte = await API.getProiecte();
+                displayProiecte(allProiecte);
+
+                // Încarcă clienți pentru dropdown
+                const clienti = await API.getClienti();
+                populateClientDropdown(clienti);
+            } catch (error) {
+                showError('Eroare la încărcarea datelor');
+            }
+        }
+
+        function displayProiecte(proiecte) {
+            const tbody = document.getElementById('proiecte-tbody');
+            
+            if (!proiecte || proiecte.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">📁</div>
+                                <h3>Nu există proiecte</h3>
+                                <p>Adaugă primul proiect pentru a începe</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = proiecte.map(p => `
+                <tr onclick="window.location.href='proiect-detalii.html?id=${p.id}'" style="cursor: pointer;">
+                    <td><strong>${p.numeProiect}</strong></td>
+                    <td>${p.clientNume}</td>
+                    <td>${getStatusBadge(p.status)}</td>
+                    <td>${formatDate(p.dataStart)}</td>
+                    <td>${formatCurrency(p.pretEstimat)}</td>
+                    <td>${formatCurrency(p.totalCheltuieli)}</td>
+                    <td><strong>${formatCurrency(p.profitEstimat)}</strong></td>
+                    <td onclick="event.stopPropagation()">
+                        <button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); window.location.href='proiect-detalii.html?id=${p.id}'">👁️ Vezi</button>
+                        <button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); editProiect(${p.id})">✏️</button>
+                        <button class="btn btn-sm btn-danger" onclick="event.stopPropagation(); deleteProiect(${p.id}, '${p.numeProiect}')">🗑️</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function populateClientDropdown(clienti) {
+            const select = document.getElementById('client-id');
+            select.innerHTML = '<option value="">Selectează client...</option>' + 
+                clienti.map(c => `<option value="${c.id}">${c.nume}</option>`).join('');
+        }
+
+        async function filterByStatus() {
+            const status = document.getElementById('filter-status').value;
+            
+            if (!status) {
+                displayProiecte(allProiecte);
+                return;
+            }
+
+            try {
+                const filtered = await API.getProiecteByStatus(status);
+                displayProiecte(filtered);
+            } catch (error) {
+                showError('Eroare la filtrarea proiectelor');
+            }
+        }
+
+        function openAddModal() {
+            currentProiectId = null;
+            document.getElementById('modal-title').textContent = 'Adaugă Proiect Nou';
+            document.getElementById('proiectForm').reset();
+            document.getElementById('proiect-id').value = '';
+            document.getElementById('proiectModal').classList.add('active');
+        }
+
+        async function editProiect(id) {
+            try {
+                const proiect = await API.getProiect(id);
+                currentProiectId = id;
+                
+                document.getElementById('modal-title').textContent = 'Editează Proiect';
+                document.getElementById('proiect-id').value = proiect.id;
+                document.getElementById('nume-proiect').value = proiect.numeProiect;
+                document.getElementById('client-id').value = proiect.clientId;
+                document.getElementById('status').value = proiect.status;
+                document.getElementById('descriere').value = proiect.descriere || '';
+                document.getElementById('pret-estimat').value = proiect.pretEstimat || '';
+                document.getElementById('pret-final').value = proiect.pretFinal || '';
+                document.getElementById('data-start').value = proiect.dataStart ? proiect.dataStart.split('T')[0] : '';
+                document.getElementById('data-finalizare').value = proiect.dataFinalizare ? proiect.dataFinalizare.split('T')[0] : '';
+                document.getElementById('observatii').value = proiect.observatii || '';
+                
+                document.getElementById('proiectModal').classList.add('active');
+            } catch (error) {
+                showError('Eroare la încărcarea datelor proiectului');
+            }
+        }
+
+        async function saveProiect(event) {
+            event.preventDefault();
+            
+            const proiectData = {
+                id: currentProiectId || 0,
+                numeProiect: document.getElementById('nume-proiect').value,
+                clientId: parseInt(document.getElementById('client-id').value),
+                status: document.getElementById('status').value,
+                descriere: document.getElementById('descriere').value || null,
+                pretEstimat: parseFloat(document.getElementById('pret-estimat').value) || null,
+                pretFinal: parseFloat(document.getElementById('pret-final').value) || null,
+                dataStart: document.getElementById('data-start').value || null,
+                dataFinalizare: document.getElementById('data-finalizare').value || null,
+                observatii: document.getElementById('observatii').value || null
+            };
+
+            try {
+                if (currentProiectId) {
+                    await API.updateProiect(currentProiectId, proiectData);
+                    showSuccess('Proiect actualizat cu succes!');
+                } else {
+                    await API.createProiect(proiectData);
+                    showSuccess('Proiect adăugat cu succes!');
+                }
+                
+                closeModal();
+                loadData();
+            } catch (error) {
+                showError('Eroare la salvarea proiectului');
+            }
+        }
+
+        async function deleteProiect(id, nume) {
+            if (confirmDelete(nume)) {
+                try {
+                    await API.deleteProiect(id);
+                    showSuccess('Proiect șters cu succes!');
+                    loadData();
+                } catch (error) {
+                    showError('Eroare la ștergerea proiectului');
+                }
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('proiectModal').classList.remove('active');
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('proiectModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Încarcă datele la pornire
+        loadData();
+    </script>
+</body>
+</html>

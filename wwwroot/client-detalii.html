@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalii Client - Atelier Tâmplărie</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🔨 Atelier Tâmplărie</h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">📊 Dashboard</a></li>
+            <li><a href="clienti.html">👥 Clienți</a></li>
+            <li><a href="proiecte.html">📁 Proiecte</a></li>
+            <li><a href="stoc.html">📦 Stoc</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Informații Client -->
+        <div class="content-section">
+            <div class="section-header">
+                <div>
+                    <a href="clienti.html" class="btn btn-secondary">← Înapoi la Clienți</a>
+                </div>
+                <div>
+                    <button class="btn btn-primary" onclick="editClient()">✏️ Editează Client</button>
+                </div>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 8px; margin-bottom: 30px;">
+                <h2 style="color: white; margin-bottom: 15px;" id="client-nume">...</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <div>
+                        <strong>📞 Telefon:</strong><br>
+                        <span id="client-telefon">-</span>
+                    </div>
+                    <div>
+                        <strong>📧 Email:</strong><br>
+                        <span id="client-email">-</span>
+                    </div>
+                    <div>
+                        <strong>📍 Adresă:</strong><br>
+                        <span id="client-adresa">-</span>
+                    </div>
+                </div>
+                <div style="margin-top: 15px;" id="client-observatii-container">
+                    <strong>📝 Observații:</strong><br>
+                    <span id="client-observatii">-</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistici Proiecte Client -->
+        <div class="stats-grid">
+            <div class="stat-card info">
+                <h3>Total Proiecte</h3>
+                <div class="value" id="total-proiecte">0</div>
+            </div>
+            <div class="stat-card warning">
+                <h3>În Lucru</h3>
+                <div class="value" id="proiecte-in-lucru">0</div>
+            </div>
+            <div class="stat-card success">
+                <h3>Finalizate</h3>
+                <div class="value" id="proiecte-finalizate">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Valoare Totală</h3>
+                <div class="value" id="valoare-totala">0 RON</div>
+            </div>
+        </div>
+
+        <!-- Lista Proiecte -->
+        <div class="content-section">
+            <div class="section-header">
+                <h2>📁 Proiecte pentru acest client</h2>
+                <button class="btn btn-primary" onclick="openAddProiectModal()">➕ Adaugă Proiect Nou</button>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Proiect</th>
+                            <th>Status</th>
+                            <th>Data Start</th>
+                            <th>Preț Estimat</th>
+                            <th>Cheltuieli</th>
+                            <th>Profit</th>
+                            <th>Acțiuni</th>
+                        </tr>
+                    </thead>
+                    <tbody id="proiecte-tbody">
+                        <tr>
+                            <td colspan="7" class="text-center">Se încarcă...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Editează Client -->
+    <div id="clientModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Editează Client</h3>
+                <button class="close-btn" onclick="closeClientModal()">&times;</button>
+            </div>
+            
+            <form id="clientForm" onsubmit="saveClient(event)">
+                <div class="form-group">
+                    <label for="nume">Nume *</label>
+                    <input type="text" id="nume" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefon">Telefon</label>
+                        <input type="tel" id="telefon">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="adresa">Adresă</label>
+                    <textarea id="adresa"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="observatii">Observații</label>
+                    <textarea id="observatii"></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeClientModal()">Anulează</button>
+                    <button type="submit" class="btn btn-success">💾 Salvează</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Adaugă Proiect -->
+    <div id="proiectModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Adaugă Proiect Nou</h3>
+                <button class="close-btn" onclick="closeProiectModal()">&times;</button>
+            </div>
+            
+            <form id="proiectForm" onsubmit="saveProiect(event)">
+                <div class="form-group">
+                    <label for="nume-proiect">Nume Proiect *</label>
+                    <input type="text" id="nume-proiect" required placeholder="Ex: Mobilier bucătărie">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="status">Status *</label>
+                        <select id="status" required>
+                            <option value="planificat">Planificat</option>
+                            <option value="in_lucru">În lucru</option>
+                            <option value="finalizat">Finalizat</option>
+                            <option value="anulat">Anulat</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="pret-estimat">Preț Estimat (RON)</label>
+                        <input type="number" id="pret-estimat" step="0.01" placeholder="0.00">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="descriere">Descriere</label>
+                    <textarea id="descriere" placeholder="Detalii despre proiect..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="data-start">Data Start</label>
+                        <input type="date" id="data-start">
+                    </div>
+                    <div class="form-group">
+                        <label for="data-finalizare">Data Finalizare</label>
+                        <input type="date" id="data-finalizare">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="observatii-proiect">Observații</label>
+                    <textarea id="observatii-proiect" placeholder="Note despre proiect..."></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeProiectModal()">Anulează</button>
+                    <button type="submit" class="btn btn-success">💾 Salvează</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        let clientId = null;
+        let currentClient = null;
+
+        // Obține ID-ul clientului din URL
+        function getClientIdFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return parseInt(params.get('id'));
+        }
+
+        // Încarcă datele clientului
+        async function loadClientData() {
+            clientId = getClientIdFromUrl();
+            
+            if (!clientId) {
+                showError('ID client invalid');
+                setTimeout(() => window.location.href = 'clienti.html', 2000);
+                return;
+            }
+
+            try {
+                // Încarcă client
+                currentClient = await API.getClient(clientId);
+                displayClientInfo(currentClient);
+
+                // Încarcă proiecte
+                const proiecte = await API.getProiecte();
+                const proiecteClient = proiecte.filter(p => p.clientId === clientId);
+                displayProiecte(proiecteClient);
+                calculateStatistics(proiecteClient);
+            } catch (error) {
+                showError('Eroare la încărcarea datelor clientului');
+                console.error(error);
+            }
+        }
+
+        function displayClientInfo(client) {
+            document.getElementById('client-nume').textContent = client.nume;
+            document.getElementById('client-telefon').textContent = client.telefon || '-';
+            document.getElementById('client-email').textContent = client.email || '-';
+            document.getElementById('client-adresa').textContent = client.adresa || '-';
+            
+            const observatiiContainer = document.getElementById('client-observatii-container');
+            if (client.observatii) {
+                document.getElementById('client-observatii').textContent = client.observatii;
+                observatiiContainer.style.display = 'block';
+            } else {
+                observatiiContainer.style.display = 'none';
+            }
+
+            document.title = `${client.nume} - Atelier Tâmplărie`;
+        }
+
+        function displayProiecte(proiecte) {
+            const tbody = document.getElementById('proiecte-tbody');
+            
+            if (!proiecte || proiecte.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">📁</div>
+                                <h3>Nu există proiecte pentru acest client</h3>
+                                <p>Adaugă primul proiect pentru a începe</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = proiecte.map(p => `
+                <tr onclick="window.location.href='proiect-detalii.html?id=${p.id}'" style="cursor: pointer;">
+                    <td><strong>${p.numeProiect}</strong></td>
+                    <td>${getStatusBadge(p.status)}</td>
+                    <td>${formatDate(p.dataStart)}</td>
+                    <td>${formatCurrency(p.pretEstimat)}</td>
+                    <td>${formatCurrency(p.totalCheltuieli)}</td>
+                    <td><strong>${formatCurrency(p.profitEstimat)}</strong></td>
+                    <td onclick="event.stopPropagation()">
+                        <button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); window.location.href='proiect-detalii.html?id=${p.id}'">👁️ Vezi</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function calculateStatistics(proiecte) {
+            const total = proiecte.length;
+            const inLucru = proiecte.filter(p => p.status === 'in_lucru').length;
+            const finalizate = proiecte.filter(p => p.status === 'finalizat').length;
+            const valoareTotala = proiecte.reduce((sum, p) => sum + (p.pretEstimat || 0), 0);
+
+            document.getElementById('total-proiecte').textContent = total;
+            document.getElementById('proiecte-in-lucru').textContent = inLucru;
+            document.getElementById('proiecte-finalizate').textContent = finalizate;
+            document.getElementById('valoare-totala').textContent = formatCurrency(valoareTotala);
+        }
+
+        function editClient() {
+            document.getElementById('nume').value = currentClient.nume;
+            document.getElementById('telefon').value = currentClient.telefon || '';
+            document.getElementById('email').value = currentClient.email || '';
+            document.getElementById('adresa').value = currentClient.adresa || '';
+            document.getElementById('observatii').value = currentClient.observatii || '';
+            document.getElementById('clientModal').classList.add('active');
+        }
+
+        async function saveClient(event) {
+            event.preventDefault();
+            
+            const clientData = {
+                nume: document.getElementById('nume').value,
+                telefon: document.getElementById('telefon').value || null,
+                email: document.getElementById('email').value || null,
+                adresa: document.getElementById('adresa').value || null,
+                observatii: document.getElementById('observatii').value || null
+            };
+
+            try {
+                await API.updateClient(clientId, clientData);
+                showSuccess('Client actualizat cu succes!');
+                closeClientModal();
+                loadClientData();
+            } catch (error) {
+                showError('Eroare la actualizarea clientului');
+            }
+        }
+
+        function openAddProiectModal() {
+            document.getElementById('proiectForm').reset();
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('data-start').value = today;
+            document.getElementById('proiectModal').classList.add('active');
+        }
+
+        async function saveProiect(event) {
+            event.preventDefault();
+            
+            const proiectData = {
+                numeProiect: document.getElementById('nume-proiect').value,
+                clientId: clientId,
+                status: document.getElementById('status').value,
+                descriere: document.getElementById('descriere').value || null,
+                pretEstimat: parseFloat(document.getElementById('pret-estimat').value) || null,
+                dataStart: document.getElementById('data-start').value || null,
+                dataFinalizare: document.getElementById('data-finalizare').value || null,
+                observatii: document.getElementById('observatii-proiect').value || null
+            };
+
+            try {
+                await API.createProiect(proiectData);
+                showSuccess('Proiect adăugat cu succes!');
+                closeProiectModal();
+                loadClientData();
+            } catch (error) {
+                showError('Eroare la adăugarea proiectului');
+            }
+        }
+
+        function closeClientModal() {
+            document.getElementById('clientModal').classList.remove('active');
+        }
+
+        function closeProiectModal() {
+            document.getElementById('proiectModal').classList.remove('active');
+        }
+
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('clientModal')) {
+                closeClientModal();
+            }
+            if (event.target === document.getElementById('proiectModal')) {
+                closeProiectModal();
+            }
+        }
+
+        // Pornește aplicația
+        loadClientData();
+    </script>
+</body>
+</html>

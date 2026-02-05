@@ -1,0 +1,65 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\cheltuieli.html",
+      "PackagePath": "staticwebassets\\cheltuieli.html"
+    },
+    {
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\client-detalii.html",
+      "PackagePath": "staticwebassets\\client-detalii.html"
+    },
+    {
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\clienti.html",
+      "PackagePath": "staticwebassets\\clienti.html"
+    },
+    {
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\css\\style.css",
+      "PackagePath": "staticwebassets\\css\\style.css"
+    },
+    {
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\js\\api.js",
+      "PackagePath": "staticwebassets\\js\\api.js"
+    },
+    {
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\js\\material-categories.js",
+      "PackagePath": "staticwebassets\\js\\material-categories.js"
+    },
+    {
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\proiect-detalii.html",
+      "PackagePath": "staticwebassets\\proiect-detalii.html"
+    },
+    {
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\proiecte.html",
+      "PackagePath": "staticwebassets\\proiecte.html"
+    },
+    {
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\stoc.html",
+      "PackagePath": "staticwebassets\\stoc.html"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AtelierTamplarie.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AtelierTamplarie.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.AtelierTamplarie.props",
+      "PackagePath": "build\\AtelierTamplarie.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.AtelierTamplarie.props",
+      "PackagePath": "buildMultiTargeting\\AtelierTamplarie.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.AtelierTamplarie.props",
+      "PackagePath": "buildTransitive\\AtelierTamplarie.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

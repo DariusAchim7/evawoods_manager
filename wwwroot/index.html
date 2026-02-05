@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier Tâmplărie - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🔨 Atelier Tâmplărie</h1>
+            <div>
+                <span id="current-date"></span>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">📊 Dashboard</a></li>
+            <li><a href="clienti.html">👥 Clienți</a></li>
+            <li><a href="proiecte.html">📁 Proiecte</a></li>
+            <li><a href="stoc.html">📦 Stoc</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- Statistici Generale -->
+        <div class="stats-grid">
+            <div class="stat-card info">
+                <h3>Total Proiecte</h3>
+                <div class="value" id="total-proiecte">-</div>
+                <div class="label">Toate proiectele</div>
+            </div>
+            <div class="stat-card warning">
+                <h3>În Lucru</h3>
+                <div class="value" id="proiecte-in-lucru">-</div>
+                <div class="label">Proiecte active</div>
+            </div>
+            <div class="stat-card success">
+                <h3>Finalizate</h3>
+                <div class="value" id="proiecte-finalizate">-</div>
+                <div class="label">Proiecte complete</div>
+            </div>
+            <div class="stat-card">
+                <h3>Valoare Estimată</h3>
+                <div class="value" id="valoare-estimata">-</div>
+                <div class="label">Total contracte</div>
+            </div>
+        </div>
+
+        <!-- Profit și Cheltuieli -->
+        <div class="stats-grid">
+            <div class="stat-card danger">
+                <h3>Total Cheltuieli</h3>
+                <div class="value" id="total-cheltuieli">-</div>
+                <div class="label">Costuri totale</div>
+            </div>
+            <div class="stat-card success">
+                <h3>Profit Estimat</h3>
+                <div class="value" id="profit-estimat">-</div>
+                <div class="label">Diferență estimată</div>
+            </div>
+            <div class="stat-card info">
+                <h3>Valoare Stoc</h3>
+                <div class="value" id="valoare-stoc">-</div>
+                <div class="label">Inventar total</div>
+            </div>
+        </div>
+
+        <!-- Proiecte Recente -->
+        <div class="content-section">
+            <div class="section-header">
+                <h2>Proiecte Active</h2>
+                <a href="proiecte.html" class="btn btn-primary">Vezi toate</a>
+            </div>
+            <div class="table-container">
+                <table id="proiecte-table">
+                    <thead>
+                        <tr>
+                            <th>Proiect</th>
+                            <th>Client</th>
+                            <th>Status</th>
+                            <th>Preț Estimat</th>
+                            <th>Cheltuieli</th>
+                            <th>Profit</th>
+                            <th>Data Start</th>
+                        </tr>
+                    </thead>
+                    <tbody id="proiecte-tbody">
+                        <tr>
+                            <td colspan="7" class="text-center">Se încarcă...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Stoc Scăzut -->
+        <div class="content-section">
+            <div class="section-header">
+                <h2>⚠️ Alertă Stoc Scăzut</h2>
+                <a href="stoc.html" class="btn btn-warning">Vezi stocul</a>
+            </div>
+            <div class="table-container">
+                <table id="stoc-scazut-table">
+                    <thead>
+                        <tr>
+                            <th>Produs</th>
+                            <th>Categorie</th>
+                            <th>Cantitate</th>
+                            <th>Unitate</th>
+                            <th>Furnizor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stoc-scazut-tbody">
+                        <tr>
+                            <td colspan="5" class="text-center">Se încarcă...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        // Afișare dată curentă
+        document.getElementById('current-date').textContent = 
+            new Date().toLocaleDateString('ro-RO', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+
+        // Încărcare date la pornire
+        async function loadDashboard() {
+            try {
+                // Încarcă statistici proiecte
+                const stats = await API.getProiecteStatistici();
+                document.getElementById('total-proiecte').textContent = stats.totalProiecte || 0;
+                document.getElementById('proiecte-in-lucru').textContent = stats.proiecteInLucru || 0;
+                document.getElementById('proiecte-finalizate').textContent = stats.proiecteFinalizate || 0;
+                document.getElementById('valoare-estimata').textContent = formatCurrency(stats.valoareTotalaEstimata);
+                document.getElementById('total-cheltuieli').textContent = formatCurrency(stats.valoareTotalaCheltuieli);
+                document.getElementById('profit-estimat').textContent = formatCurrency(stats.profitEstimatTotal);
+
+                // Încarcă valoare stoc
+                const stocValoare = await API.getStocValoare();
+                document.getElementById('valoare-stoc').textContent = formatCurrency(stocValoare.valoareTotala);
+
+                // Încarcă proiecte active
+                const proiecteInLucru = await API.getProiecteByStatus('in_lucru');
+                displayProiecteActive(proiecteInLucru);
+
+                // Încarcă stoc scăzut
+                const stocScazut = await API.getStocScazut();
+                displayStocScazut(stocScazut);
+
+            } catch (error) {
+                console.error('Eroare la încărcarea dashboard-ului:', error);
+            }
+        }
+
+        function displayProiecteActive(proiecte) {
+            const tbody = document.getElementById('proiecte-tbody');
+            
+            if (!proiecte || proiecte.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">📁</div>
+                                <h3>Nu există proiecte în lucru</h3>
+                                <p>Începe un proiect nou pentru a-l vedea aici</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = proiecte.slice(0, 5).map(p => `
+                <tr>
+                    <td><strong>${p.numeProiect}</strong></td>
+                    <td>${p.clientNume}</td>
+                    <td>${getStatusBadge(p.status)}</td>
+                    <td>${formatCurrency(p.pretEstimat)}</td>
+                    <td>${formatCurrency(p.totalCheltuieli)}</td>
+                    <td>${formatCurrency(p.pretEstimat - p.totalCheltuieli)}</td>
+                    <td>${formatDate(p.dataStart)}</td>
+                </tr>
+            `).join('');
+        }
+
+        function displayStocScazut(stoc) {
+            const tbody = document.getElementById('stoc-scazut-tbody');
+            
+            if (!stoc || stoc.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">✅</div>
+                                <h3>Stocul este bun!</h3>
+                                <p>Nu există produse cu stoc scăzut</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = stoc.map(s => `
+                <tr>
+                    <td><strong>${s.numeProdus}</strong></td>
+                    <td>${s.categorie || '-'}</td>
+                    <td><span class="badge badge-danger">${formatNumber(s.cantitate)}</span></td>
+                    <td>${s.unitateMasura}</td>
+                    <td>${s.furnizor || '-'}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Pornește aplicația
+        loadDashboard();
+    </script>
+</body>
+</html>

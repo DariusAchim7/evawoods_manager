@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheltuieli - Atelier Tâmplărie</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🔨 Eva Wood's - Project Manager</h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">📊 Dashboard</a></li>
+            <li><a href="clienti.html">👥 Clienți</a></li>
+            <li><a href="proiecte.html">📁 Proiecte</a></li>
+            <li><a href="cheltuieli.html" class="active">💰 Cheltuieli</a></li>
+            <li><a href="stoc.html">📦 Stoc</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="content-section">
+            <div class="section-header">
+                <h2>💰 Gestionare Cheltuieli</h2>
+                <div>
+                    <select id="filter-tip" onchange="filterByTip()">
+                        <option value="">Toate tipurile</option>
+                        <option value="materiale">Materiale</option>
+                        <option value="manopera">Manoperă</option>
+                        <option value="transport">Transport</option>
+                        <option value="altele">Altele</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="openAddModal()">➕ Adaugă Cheltuială</button>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Proiect</th>
+                            <th>Tip Cheltuială</th>
+                            <th>Descriere</th>
+                            <th>Sumă</th>
+                            <th>Acțiuni</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cheltuieli-tbody">
+                        <tr>
+                            <td colspan="6" class="text-center">Se încarcă...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Adaugă/Editează Cheltuială -->
+    <div id="cheltuialaModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Adaugă Cheltuială Nouă</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            
+            <form id="cheltuialaForm" onsubmit="saveCheltuiala(event)">
+                <input type="hidden" id="cheltuiala-id">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="proiect-id">Proiect *</label>
+                        <select id="proiect-id" required>
+                            <option value="">Selectează proiect...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tip-cheltuiala">Tip Cheltuială *</label>
+                        <select id="tip-cheltuiala" required>
+                            <option value="">Selectează tip...</option>
+                            <option value="materiale">Materiale</option>
+                            <option value="manopera">Manoperă</option>
+                            <option value="transport">Transport</option>
+                            <option value="altele">Altele</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="descriere">Descriere *</label>
+                    <input type="text" id="descriere" required placeholder="Ex: Lemn stejar pentru blat">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="suma">Sumă (RON) *</label>
+                        <input type="number" id="suma" step="0.01" required placeholder="0.00">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="data-cheltuiala">Data Cheltuială</label>
+                        <input type="date" id="data-cheltuiala">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="observatii">Observații</label>
+                    <textarea id="observatii" placeholder="Detalii suplimentare..."></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Anulează</button>
+                    <button type="submit" class="btn btn-success">💾 Salvează</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        let currentCheltuialaId = null;
+        let allCheltuieli = [];
+
+        // Încarcă cheltuielile și proiectele
+        async function loadData() {
+            try {
+                // Încarcă cheltuieli
+                allCheltuieli = await API.getCheltuieli();
+                displayCheltuieli(allCheltuieli);
+
+                // Încarcă proiecte pentru dropdown
+                const proiecte = await API.getProiecte();
+                populateProiectDropdown(proiecte);
+            } catch (error) {
+                showError('Eroare la încărcarea datelor');
+            }
+        }
+
+        function displayCheltuieli(cheltuieli) {
+            const tbody = document.getElementById('cheltuieli-tbody');
+            
+            if (!cheltuieli || cheltuieli.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">💰</div>
+                                <h3>Nu există cheltuieli</h3>
+                                <p>Adaugă prima cheltuială pentru a începe</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = cheltuieli.map(ch => `
+                <tr>
+                    <td>${formatDate(ch.dataCheltuiala)}</td>
+                    <td><strong>${ch.proiectNume}</strong></td>
+                    <td><span class="badge badge-info">${ch.tipCheltuiala}</span></td>
+                    <td>${ch.descriere}</td>
+                    <td><strong>${formatCurrency(ch.suma)}</strong></td>
+                    <td>
+                        <button class="btn btn-sm btn-primary" onclick="editCheltuiala(${ch.id})">✏️</button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteCheltuiala(${ch.id}, '${ch.descriere}')">🗑️</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function populateProiectDropdown(proiecte) {
+            const select = document.getElementById('proiect-id');
+            select.innerHTML = '<option value="">Selectează proiect...</option>' + 
+                proiecte.map(p => `<option value="${p.id}">${p.numeProiect} (${p.clientNume})</option>`).join('');
+        }
+
+        async function filterByTip() {
+            const tip = document.getElementById('filter-tip').value;
+            
+            if (!tip) {
+                displayCheltuieli(allCheltuieli);
+                return;
+            }
+
+            try {
+                const filtered = await API.getCheltuieliByTip(tip);
+                // Transformă datele pentru a include proiectNume
+                const enriched = filtered.map(ch => ({
+                    ...ch,
+                    tipCheltuiala: tip
+                }));
+                displayCheltuieli(enriched);
+            } catch (error) {
+                showError('Eroare la filtrarea cheltuielilor');
+            }
+        }
+
+        function openAddModal() {
+            currentCheltuialaId = null;
+            document.getElementById('modal-title').textContent = 'Adaugă Cheltuială Nouă';
+            document.getElementById('cheltuialaForm').reset();
+            document.getElementById('cheltuiala-id').value = '';
+            
+            // Setează data curentă
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('data-cheltuiala').value = today;
+            
+            document.getElementById('cheltuialaModal').classList.add('active');
+        }
+
+        async function editCheltuiala(id) {
+            try {
+                const cheltuiala = await API.getCheltuiala(id);
+                currentCheltuialaId = id;
+                
+                document.getElementById('modal-title').textContent = 'Editează Cheltuială';
+                document.getElementById('cheltuiala-id').value = cheltuiala.id;
+                document.getElementById('proiect-id').value = cheltuiala.proiectId;
+                document.getElementById('tip-cheltuiala').value = cheltuiala.tipCheltuiala;
+                document.getElementById('descriere').value = cheltuiala.descriere;
+                document.getElementById('suma').value = cheltuiala.suma;
+                document.getElementById('data-cheltuiala').value = cheltuiala.dataCheltuiala ? 
+                    cheltuiala.dataCheltuiala.split('T')[0] : '';
+                document.getElementById('observatii').value = cheltuiala.observatii || '';
+                
+                document.getElementById('cheltuialaModal').classList.add('active');
+            } catch (error) {
+                showError('Eroare la încărcarea datelor cheltuielii');
+            }
+        }
+
+        async function saveCheltuiala(event) {
+            event.preventDefault();
+            
+            const cheltuialaData = {
+                id: currentCheltuialaId || 0,
+                proiectId: parseInt(document.getElementById('proiect-id').value),
+                tipCheltuiala: document.getElementById('tip-cheltuiala').value,
+                descriere: document.getElementById('descriere').value,
+                suma: parseFloat(document.getElementById('suma').value),
+                dataCheltuiala: document.getElementById('data-cheltuiala').value || new Date().toISOString().split('T')[0],
+                observatii: document.getElementById('observatii').value || null
+            };
+
+            try {
+                if (currentCheltuialaId) {
+                    await API.updateCheltuiala(currentCheltuialaId, cheltuialaData);
+                    showSuccess('Cheltuială actualizată cu succes!');
+                } else {
+                    await API.createCheltuiala(cheltuialaData);
+                    showSuccess('Cheltuială adăugată cu succes!');
+                }
+                
+                closeModal();
+                loadData();
+            } catch (error) {
+                showError('Eroare la salvarea cheltuielii');
+            }
+        }
+
+        async function deleteCheltuiala(id, descriere) {
+            if (confirmDelete(descriere)) {
+                try {
+                    await API.deleteCheltuiala(id);
+                    showSuccess('Cheltuială ștearsă cu succes!');
+                    loadData();
+                } catch (error) {
+                    showError('Eroare la ștergerea cheltuielii');
+                }
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('cheltuialaModal').classList.remove('active');
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('cheltuialaModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Încarcă datele la pornire
+        loadData();
+    </script>
+</body>
+</html>

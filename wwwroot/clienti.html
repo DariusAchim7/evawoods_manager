@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clienți - Atelier Tâmplărie</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🔨 Atelier Tâmplărie</h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">📊 Dashboard</a></li>
+            <li><a href="clienti.html" class="active">👥 Clienți</a></li>
+            <li><a href="proiecte.html">📁 Proiecte</a></li>
+            <li><a href="stoc.html">📦 Stoc</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="content-section">
+            <div class="section-header">
+                <h2>👥 Gestionare Clienți</h2>
+                <button class="btn btn-primary" onclick="openAddModal()">➕ Adaugă Client</button>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nume</th>
+                            <th>Telefon</th>
+                            <th>Email</th>
+                            <th>Adresă</th>
+                            <th>Nr. Proiecte</th>
+                            <th>Acțiuni</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clienti-tbody">
+                        <tr>
+                            <td colspan="6" class="text-center">Se încarcă...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Adaugă/Editează Client -->
+    <div id="clientModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modal-title">Adaugă Client Nou</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            
+            <form id="clientForm" onsubmit="saveClient(event)">
+                <input type="hidden" id="client-id">
+                
+                <div class="form-group">
+                    <label for="nume">Nume *</label>
+                    <input type="text" id="nume" required placeholder="Ex: Popescu Ion">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="telefon">Telefon</label>
+                        <input type="tel" id="telefon" placeholder="Ex: 0722123456">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Ex: popescu@email.com">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="adresa">Adresă</label>
+                    <textarea id="adresa" placeholder="Ex: Str. Principală nr. 10, București"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="observatii">Observații</label>
+                    <textarea id="observatii" placeholder="Note despre client, preferințe, etc."></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Anulează</button>
+                    <button type="submit" class="btn btn-success">💾 Salvează</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script>
+        let currentClientId = null;
+
+        // Încarcă clienții
+        async function loadClienti() {
+            try {
+                const clienti = await API.getClienti();
+                displayClienti(clienti);
+            } catch (error) {
+                showError('Eroare la încărcarea clienților');
+            }
+        }
+
+        function displayClienti(clienti) {
+            const tbody = document.getElementById('clienti-tbody');
+            
+            if (!clienti || clienti.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6">
+                            <div class="empty-state">
+                                <div class="empty-state-icon">👥</div>
+                                <h3>Nu există clienți</h3>
+                                <p>Adaugă primul client pentru a începe</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = clienti.map(c => `
+                <tr onclick="window.location.href='client-detalii.html?id=${c.id}'" style="cursor: pointer;">
+                    <td><strong>${c.nume}</strong></td>
+                    <td>${c.telefon || '-'}</td>
+                    <td>${c.email || '-'}</td>
+                    <td>${c.adresa || '-'}</td>
+                    <td>${c.numarProiecte || 0}</td>
+                    <td onclick="event.stopPropagation()">
+                        <button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); window.location.href='client-detalii.html?id=${c.id}'">👁️ Vezi</button>
+                        <button class="btn btn-sm btn-primary" onclick="event.stopPropagation(); editClient(${c.id})">✏️ Editează</button>
+                        <button class="btn btn-sm btn-danger" onclick="event.stopPropagation(); deleteClient(${c.id}, '${c.nume}')">🗑️ Șterge</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function openAddModal() {
+            currentClientId = null;
+            document.getElementById('modal-title').textContent = 'Adaugă Client Nou';
+            document.getElementById('clientForm').reset();
+            document.getElementById('client-id').value = '';
+            document.getElementById('clientModal').classList.add('active');
+        }
+
+        async function editClient(id) {
+            try {
+                const client = await API.getClient(id);
+                currentClientId = id;
+                
+                document.getElementById('modal-title').textContent = 'Editează Client';
+                document.getElementById('client-id').value = client.id;
+                document.getElementById('nume').value = client.nume;
+                document.getElementById('telefon').value = client.telefon || '';
+                document.getElementById('email').value = client.email || '';
+                document.getElementById('adresa').value = client.adresa || '';
+                document.getElementById('observatii').value = client.observatii || '';
+                
+                document.getElementById('clientModal').classList.add('active');
+            } catch (error) {
+                showError('Eroare la încărcarea datelor clientului');
+            }
+        }
+
+        async function saveClient(event) {
+            event.preventDefault();
+            
+            const clientData = {
+                id: currentClientId || 0,
+                nume: document.getElementById('nume').value,
+                telefon: document.getElementById('telefon').value || null,
+                email: document.getElementById('email').value || null,
+                adresa: document.getElementById('adresa').value || null,
+                observatii: document.getElementById('observatii').value || null
+            };
+
+            try {
+                if (currentClientId) {
+                    await API.updateClient(currentClientId, clientData);
+                    showSuccess('Client actualizat cu succes!');
+                } else {
+                    await API.createClient(clientData);
+                    showSuccess('Client adăugat cu succes!');
+                }
+                
+                closeModal();
+                loadClienti();
+            } catch (error) {
+                showError('Eroare la salvarea clientului');
+            }
+        }
+
+        async function deleteClient(id, nume) {
+            if (confirmDelete(nume)) {
+                try {
+                    await API.deleteClient(id);
+                    showSuccess('Client șters cu succes!');
+                    loadClienti();
+                } catch (error) {
+                    showError('Eroare la ștergerea clientului');
+                }
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('clientModal').classList.remove('active');
+        }
+
+        // Click în afara modalului pentru închidere
+        window.onclick = function(event) {
+            const modal = document.getElementById('clientModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Încarcă clienții la pornire
+        loadClienti();
+    </script>
+</body>
+</html>

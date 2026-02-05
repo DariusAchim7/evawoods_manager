@@ -1,0 +1,15 @@
+{
+    "profiles": 
+    {
+      "AtelierTamplarie": 
+      {
+        "commandName": "Project",
+        "applicationUrl": "http://localhost:5000",
+        "environmentVariables": 
+        {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+        }
+      }
+    }
+}
+  

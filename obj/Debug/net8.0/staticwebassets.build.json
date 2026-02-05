@@ -1,0 +1,1052 @@
+{
+  "Version": 1,
+  "Hash": "uUxU2FSzea+p6wllo8zem/8vuHMACGH4vvgoi0xUVH0=",
+  "Source": "AtelierTamplarie",
+  "BasePath": "_content/AtelierTamplarie",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "AtelierTamplarie\\wwwroot",
+      "Source": "AtelierTamplarie",
+      "ContentRoot": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\",
+      "BasePath": "_content/AtelierTamplarie",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\cheltuieli.html",
+      "SourceId": "AtelierTamplarie",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\",
+      "BasePath": "_content/AtelierTamplarie",
+      "RelativePath": "cheltuieli#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "53ml3t712c",
+      "Integrity": "73V1NUkJwlrKYfjFY9fVaGmAeTuN+cIodme2SRMcwM0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\cheltuieli.html"
+    },
+    {
+      "Identity": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\client-detalii.html",
+      "SourceId": "AtelierTamplarie",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\",
+      "BasePath": "_content/AtelierTamplarie",
+      "RelativePath": "client-detalii#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ou861myylq",
+      "Integrity": "UMtpLyefMeoIOHBQAfPswAoRNRP9Nm9FRv+l1tU6yas=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\client-detalii.html"
+    },
+    {
+      "Identity": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\clienti.html",
+      "SourceId": "AtelierTamplarie",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\",
+      "BasePath": "_content/AtelierTamplarie",
+      "RelativePath": "clienti#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "2opcw9i6za",
+      "Integrity": "8pDMgQCe+mVJmoycBwCRdtLK2t9Aw6uoDq6r56xkMnY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\clienti.html"
+    },
+    {
+      "Identity": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\css\\style.css",
+      "SourceId": "AtelierTamplarie",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\",
+      "BasePath": "_content/AtelierTamplarie",
+      "RelativePath": "css/style#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9ts3tau1go",
+      "Integrity": "nXlmgPUcMhAyD5c45svwAB1YTxB0qWdoUoA1Mh2SndQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\style.css"
+    },
+    {
+      "Identity": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\index.html",
+      "SourceId": "AtelierTamplarie",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\",
+      "BasePath": "_content/AtelierTamplarie",
+      "RelativePath": "index#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "28sbj3a44v",
+      "Integrity": "ouLOFcabQPgD12plkig4Lsj9zrFR5h0Q7y5Eb8VBuTI=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    },
+    {
+      "Identity": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\js\\api.js",
+      "SourceId": "AtelierTamplarie",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\",
+      "BasePath": "_content/AtelierTamplarie",
+      "RelativePath": "js/api#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "pzokuv5lx5",
+      "Integrity": "hQVlsscSekxpaq22a53PHoVwBvIluRCcACCzv9Yv3MA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\api.js"
+    },
+    {
+      "Identity": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\js\\material-categories.js",
+      "SourceId": "AtelierTamplarie",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\",
+      "BasePath": "_content/AtelierTamplarie",
+      "RelativePath": "js/material-categories#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "1pz6swk2j2",
+      "Integrity": "NdYbvjhSxhwXVpDLHhmCG0emdIeRLS6qfC7kAAv7rGc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\material-categories.js"
+    },
+    {
+      "Identity": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\proiect-detalii.html",
+      "SourceId": "AtelierTamplarie",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\",
+      "BasePath": "_content/AtelierTamplarie",
+      "RelativePath": "proiect-detalii#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "x7tanc2qch",
+      "Integrity": "k4ZavYajfMSuRiCV3BRGyZ/nh9gV+5tDFI0CsSbuqTk=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\proiect-detalii.html"
+    },
+    {
+      "Identity": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\proiecte.html",
+      "SourceId": "AtelierTamplarie",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\",
+      "BasePath": "_content/AtelierTamplarie",
+      "RelativePath": "proiecte#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "xm3rqekw81",
+      "Integrity": "1yLsi18GFQ7qyqE2xN49SFLmBoZ09XElXanVOWW0MKQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\proiecte.html"
+    },
+    {
+      "Identity": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\stoc.html",
+      "SourceId": "AtelierTamplarie",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\",
+      "BasePath": "_content/AtelierTamplarie",
+      "RelativePath": "stoc#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "kqbu7yd2bh",
+      "Integrity": "FOqdcoa/9XXjQtwyRRvuw1U+wTK3D/0ScKXJL0MCrJE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\stoc.html"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "cheltuieli.53ml3t712c.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\cheltuieli.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "12380"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"73V1NUkJwlrKYfjFY9fVaGmAeTuN+cIodme2SRMcwM0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Feb 2026 12:37:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "53ml3t712c"
+        },
+        {
+          "Name": "label",
+          "Value": "cheltuieli.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-73V1NUkJwlrKYfjFY9fVaGmAeTuN+cIodme2SRMcwM0="
+        }
+      ]
+    },
+    {
+      "Route": "cheltuieli.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\cheltuieli.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "12380"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"73V1NUkJwlrKYfjFY9fVaGmAeTuN+cIodme2SRMcwM0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 02 Feb 2026 12:37:17 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-73V1NUkJwlrKYfjFY9fVaGmAeTuN+cIodme2SRMcwM0="
+        }
+      ]
+    },
+    {
+      "Route": "client-detalii.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\client-detalii.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "16738"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UMtpLyefMeoIOHBQAfPswAoRNRP9Nm9FRv+l1tU6yas=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Feb 2026 07:24:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-UMtpLyefMeoIOHBQAfPswAoRNRP9Nm9FRv+l1tU6yas="
+        }
+      ]
+    },
+    {
+      "Route": "client-detalii.ou861myylq.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\client-detalii.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "16738"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"UMtpLyefMeoIOHBQAfPswAoRNRP9Nm9FRv+l1tU6yas=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Feb 2026 07:24:33 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ou861myylq"
+        },
+        {
+          "Name": "label",
+          "Value": "client-detalii.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-UMtpLyefMeoIOHBQAfPswAoRNRP9Nm9FRv+l1tU6yas="
+        }
+      ]
+    },
+    {
+      "Route": "clienti.2opcw9i6za.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\clienti.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9287"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8pDMgQCe+mVJmoycBwCRdtLK2t9Aw6uoDq6r56xkMnY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Feb 2026 07:42:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2opcw9i6za"
+        },
+        {
+          "Name": "label",
+          "Value": "clienti.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-8pDMgQCe+mVJmoycBwCRdtLK2t9Aw6uoDq6r56xkMnY="
+        }
+      ]
+    },
+    {
+      "Route": "clienti.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\clienti.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9287"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8pDMgQCe+mVJmoycBwCRdtLK2t9Aw6uoDq6r56xkMnY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Feb 2026 07:42:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-8pDMgQCe+mVJmoycBwCRdtLK2t9Aw6uoDq6r56xkMnY="
+        }
+      ]
+    },
+    {
+      "Route": "css/style.9ts3tau1go.css",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\css\\style.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9889"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nXlmgPUcMhAyD5c45svwAB1YTxB0qWdoUoA1Mh2SndQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Feb 2026 09:58:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9ts3tau1go"
+        },
+        {
+          "Name": "label",
+          "Value": "css/style.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-nXlmgPUcMhAyD5c45svwAB1YTxB0qWdoUoA1Mh2SndQ="
+        }
+      ]
+    },
+    {
+      "Route": "css/style.css",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\css\\style.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9889"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"nXlmgPUcMhAyD5c45svwAB1YTxB0qWdoUoA1Mh2SndQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Feb 2026 09:58:54 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-nXlmgPUcMhAyD5c45svwAB1YTxB0qWdoUoA1Mh2SndQ="
+        }
+      ]
+    },
+    {
+      "Route": "index.28sbj3a44v.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9257"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ouLOFcabQPgD12plkig4Lsj9zrFR5h0Q7y5Eb8VBuTI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Feb 2026 07:25:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "28sbj3a44v"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ouLOFcabQPgD12plkig4Lsj9zrFR5h0Q7y5Eb8VBuTI="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9257"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ouLOFcabQPgD12plkig4Lsj9zrFR5h0Q7y5Eb8VBuTI=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Feb 2026 07:25:28 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ouLOFcabQPgD12plkig4Lsj9zrFR5h0Q7y5Eb8VBuTI="
+        }
+      ]
+    },
+    {
+      "Route": "js/api.js",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\js\\api.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8327"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hQVlsscSekxpaq22a53PHoVwBvIluRCcACCzv9Yv3MA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Feb 2026 13:30:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-hQVlsscSekxpaq22a53PHoVwBvIluRCcACCzv9Yv3MA="
+        }
+      ]
+    },
+    {
+      "Route": "js/api.pzokuv5lx5.js",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\js\\api.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "8327"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hQVlsscSekxpaq22a53PHoVwBvIluRCcACCzv9Yv3MA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Feb 2026 13:30:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "pzokuv5lx5"
+        },
+        {
+          "Name": "label",
+          "Value": "js/api.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hQVlsscSekxpaq22a53PHoVwBvIluRCcACCzv9Yv3MA="
+        }
+      ]
+    },
+    {
+      "Route": "js/material-categories.1pz6swk2j2.js",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\js\\material-categories.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3646"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NdYbvjhSxhwXVpDLHhmCG0emdIeRLS6qfC7kAAv7rGc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Feb 2026 09:55:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "1pz6swk2j2"
+        },
+        {
+          "Name": "label",
+          "Value": "js/material-categories.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-NdYbvjhSxhwXVpDLHhmCG0emdIeRLS6qfC7kAAv7rGc="
+        }
+      ]
+    },
+    {
+      "Route": "js/material-categories.js",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\js\\material-categories.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3646"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"NdYbvjhSxhwXVpDLHhmCG0emdIeRLS6qfC7kAAv7rGc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Feb 2026 09:55:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-NdYbvjhSxhwXVpDLHhmCG0emdIeRLS6qfC7kAAv7rGc="
+        }
+      ]
+    },
+    {
+      "Route": "proiect-detalii.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\proiect-detalii.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31903"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"k4ZavYajfMSuRiCV3BRGyZ/nh9gV+5tDFI0CsSbuqTk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Feb 2026 13:30:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-k4ZavYajfMSuRiCV3BRGyZ/nh9gV+5tDFI0CsSbuqTk="
+        }
+      ]
+    },
+    {
+      "Route": "proiect-detalii.x7tanc2qch.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\proiect-detalii.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31903"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"k4ZavYajfMSuRiCV3BRGyZ/nh9gV+5tDFI0CsSbuqTk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Feb 2026 13:30:58 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "x7tanc2qch"
+        },
+        {
+          "Name": "label",
+          "Value": "proiect-detalii.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-k4ZavYajfMSuRiCV3BRGyZ/nh9gV+5tDFI0CsSbuqTk="
+        }
+      ]
+    },
+    {
+      "Route": "proiecte.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\proiecte.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13558"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1yLsi18GFQ7qyqE2xN49SFLmBoZ09XElXanVOWW0MKQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Feb 2026 13:30:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-1yLsi18GFQ7qyqE2xN49SFLmBoZ09XElXanVOWW0MKQ="
+        }
+      ]
+    },
+    {
+      "Route": "proiecte.xm3rqekw81.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\proiecte.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "13558"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1yLsi18GFQ7qyqE2xN49SFLmBoZ09XElXanVOWW0MKQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 05 Feb 2026 13:30:57 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "xm3rqekw81"
+        },
+        {
+          "Name": "label",
+          "Value": "proiecte.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-1yLsi18GFQ7qyqE2xN49SFLmBoZ09XElXanVOWW0MKQ="
+        }
+      ]
+    },
+    {
+      "Route": "stoc.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\stoc.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "18110"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FOqdcoa/9XXjQtwyRRvuw1U+wTK3D/0ScKXJL0MCrJE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Feb 2026 07:25:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-FOqdcoa/9XXjQtwyRRvuw1U+wTK3D/0ScKXJL0MCrJE="
+        }
+      ]
+    },
+    {
+      "Route": "stoc.kqbu7yd2bh.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\stoc.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "18110"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"FOqdcoa/9XXjQtwyRRvuw1U+wTK3D/0ScKXJL0MCrJE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 03 Feb 2026 07:25:49 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "kqbu7yd2bh"
+        },
+        {
+          "Name": "label",
+          "Value": "stoc.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-FOqdcoa/9XXjQtwyRRvuw1U+wTK3D/0ScKXJL0MCrJE="
+        }
+      ]
+    }
+  ]
+}

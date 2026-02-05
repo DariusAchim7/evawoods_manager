@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+	  {
+		"label": "build",
+		"type": "process",
+		"command": "C:\\Program Files\\dotnet\\dotnet.exe",
+		"args": [
+		  "build",
+		  "${workspaceFolder}/EvaWoods_Manager.sln"
+		],
+		"problemMatcher": "$msCompile"
+	  }
+	]
+  }
+  
