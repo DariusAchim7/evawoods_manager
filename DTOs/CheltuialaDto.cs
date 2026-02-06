@@ -15,6 +15,7 @@ namespace AtelierTamplarie.DTOs
         public string? SubcategorieMaterial { get; set; }
         public decimal? Cantitate { get; set; }
         public string? UnitateMasura { get; set; }
+        public decimal? PretUnitar { get; set; }
     }
 
     // DTO pentru actualizarea unei cheltuieli
@@ -32,6 +33,7 @@ namespace AtelierTamplarie.DTOs
         public string? SubcategorieMaterial { get; set; }
         public decimal? Cantitate { get; set; }
         public string? UnitateMasura { get; set; }
+        public decimal? PretUnitar { get; set; }
     }
 
     // DTO pentru returnarea datelor cheltuielii
@@ -52,5 +54,6 @@ namespace AtelierTamplarie.DTOs
         public string? SubcategorieMaterial { get; set; }
         public decimal? Cantitate { get; set; }
         public string? UnitateMasura { get; set; }
+        public decimal? PretUnitar { get; set; }
     }
 }

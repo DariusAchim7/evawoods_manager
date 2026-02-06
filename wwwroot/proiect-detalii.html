@@ -26,12 +26,11 @@
         <!-- Header Proiect -->
         <div class="content-section">
             <div class="section-header">
-                <div>
-                    <a href="#" id="back-link" class="btn btn-secondary">← Înapoi</a>
-                </div>
+                <h2>📁 Detalii Proiect</h2>
                 <div>
                     <button class="btn btn-primary" onclick="editProiect()">✏️ Editează Proiect</button>
                     <button class="btn btn-danger" onclick="deleteProiect()">🗑️ Șterge Proiect</button>
+                    <a href="#" id="back-link" class="btn btn-secondary">← Înapoi</a>
                 </div>
             </div>
 
@@ -73,30 +72,6 @@
             </div>
         </div>
 
-        <!-- Statistici Financiare -->
-        <div class="stats-grid">
-            <div class="stat-card info">
-                <h3>💰 Încasat</h3>
-                <div class="value" id="stat-incasat">0 RON</div>
-                <div class="label">Preț estimat/final</div>
-            </div>
-            <div class="stat-card danger">
-                <h3>💸 Cheltuieli</h3>
-                <div class="value" id="stat-cheltuieli">0 RON</div>
-                <div class="label">Total costuri</div>
-            </div>
-            <div class="stat-card success">
-                <h3>📈 Profit</h3>
-                <div class="value" id="stat-profit">0 RON</div>
-                <div class="label">Încasat - Cheltuieli</div>
-            </div>
-            <div class="stat-card warning">
-                <h3>📊 Marjă</h3>
-                <div class="value" id="stat-marja">0%</div>
-                <div class="label">Procent profit</div>
-            </div>
-        </div>
-
         <!-- Cheltuieli -->
         <div class="content-section">
             <div class="section-header">
@@ -111,7 +86,9 @@
                             <th>Data</th>
                             <th>Tip</th>
                             <th>Descriere</th>
-                            <th>Sumă</th>
+                            <th>Cantitate</th>
+                            <th>Pret/Unitate</th>
+                            <th>Pret final</th>
                             <th>Acțiuni</th>
                         </tr>
                     </thead>
@@ -127,6 +104,113 @@
             <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;" id="breakdown-container">
                 <h3 style="margin-bottom: 15px;">📊 Breakdown Cheltuieli</h3>
                 <div id="breakdown-content"></div>
+            </div>
+            <!-- Statistici Financiare -->
+            <div class="stats-grid">
+                <div class="stat-card info">
+                    <h3>💰 Încasat</h3>
+                    <div class="value" id="stat-incasat">0 RON</div>
+                    <div class="label">Preț estimat/final</div>
+                </div>
+                <div class="stat-card danger">
+                    <h3>💸 Cheltuieli</h3>
+                    <div class="value" id="stat-cheltuieli">0 RON</div>
+                    <div class="label">Total costuri</div>
+                </div>
+                <div class="stat-card success">
+                    <h3>📈 Profit</h3>
+                    <div class="value" id="stat-profit">0 RON</div>
+                    <div class="label">Încasat - Cheltuieli</div>
+                </div>
+                <div class="stat-card warning">
+                    <h3>📊 Marjă</h3>
+                    <div class="value" id="stat-marja">0%</div>
+                    <div class="label">Procent profit</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculator Cant -->
+        <div class="content-section">
+            <div class="section-header">
+                <h2>📐 Calculator Cant</h2>
+                <div>
+                    <button class="btn btn-secondary" onclick="descarcaTemplateExcel()" title="Descarcă template Excel">
+                        📥 Descarcă Template
+                    </button>
+                    <button class="btn btn-primary" onclick="openUploadExcelModal()">
+                        📤 Upload Excel
+                    </button>
+                </div>
+            </div>
+    
+            <div class="alert alert-info">
+                <strong>ℹ️ Format Excel Necesar:</strong><br>
+                Coloana 1: Lungime (mm) | Coloana 2: Lățime (mm) | Coloana 3: Cant Lungime (0/1/2) | Coloana 4: Cant Lățime (0/1/2)<br>
+                <strong>Pierdere tehnologică:</strong> 4mm (0,4cm) pe fiecare latură cantată
+            </div>
+    
+            <!-- Lista calcule salvate -->
+            <div id="calcule-lista" style="margin-bottom: 20px;">
+                <h3>Calcule Salvate:</h3>
+                <div id="calcule-items"></div>
+            </div>
+    
+            <!-- Rezultat calcul -->
+            <div id="calcul-result" style="display: none;">
+                <div class="stat-card success">
+                    <div id="total-cant"></div>
+                </div>
+    
+                <h3 style="margin-top: 30px;">📊 Detalii Calcul:</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Lungime (mm)</th>
+                                <th>Lățime (mm)</th>
+                                <th>Cant L</th>
+                                <th>Cant l</th>
+                                <th>Detalii Cant</th>
+                                <th>Total Linie</th>
+                            </tr>
+                        </thead>
+                        <tbody id="calcul-details"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Modal Upload Excel -->
+        <div id="uploadExcelModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Upload Excel pentru Calcul Cant</h3>
+                    <button class="close-btn" onclick="closeUploadExcelModal()">&times;</button>
+                </div>
+    
+                <form id="uploadExcelForm" onsubmit="uploadExcelCant(event)">
+                    <div class="form-group">
+                        <label for="excel-file">Selectează fișier Excel *</label>
+                        <input type="file" id="excel-file" accept=".xlsx,.xls" required>
+                        <small>Format: .xlsx sau .xls</small>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="observatii-cant">Observații (opțional)</label>
+                        <textarea id="observatii-cant" placeholder="Ex: Calcul pentru corpuri bucătărie"></textarea>
+                    </div>
+    
+                    <div id="preview-cant" style="display: none; margin-top: 20px;">
+                        <h4>Previzualizare:</h4>
+                        <div id="preview-content"></div>
+                    </div>
+    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="closeUploadExcelModal()">Anulează</button>
+                        <button type="submit" class="btn btn-success">💾 Salvează Calcul</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -216,10 +300,6 @@
                             <option value="altele">Altele</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="suma">Sumă (RON) *</label>
-                        <input type="number" id="suma" step="0.01" required>
-                    </div>
                 </div>
 
                 <!-- Categorii materiale (vizibil doar pentru tip "materiale") -->
@@ -241,8 +321,8 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="cantitate">Cantitate</label>
-                            <input type="number" id="cantitate" step="0.01" placeholder="0">
+                            <label for="cantitate">Cantitate *</label>
+                            <input type="number" id="cantitate" step="0.01" placeholder="0" required>
                         </div>
                         <div class="form-group">
                             <label for="unitate-masura">Unitate Măsură</label>
@@ -250,6 +330,20 @@
                                 <option value="">Selectează...</option>
                             </select>
                         </div>
+                       
+                        <div class="form-group">
+                            <label for="pret-unitar">Preț / Unitate (RON) *</label>
+                            <input type="number" id="pret-unitar" step="0.01" placeholder="0.00" required>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                <!-- Pentru non-materiale, doar suma -->
+                <div id="non-material-suma-section" style="display: none;">
+                    <div class="form-group">
+                        <label for="suma-direct">Sumă Totală (RON) *</label>
+                        <input type="number" id="suma-direct" step="0.01" placeholder="0.00">
                     </div>
                 </div>
 
@@ -275,9 +369,11 @@
             </form>
         </div>
     </div>
-
+    
     <script src="js/api.js"></script>
     <script src="js/material-categories.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="js/calcul-cant.js"></script>
     <script>
         let proiectId = null;
         let currentProiect = null;
@@ -337,16 +433,28 @@
         function toggleMaterialCategories() {
             const tipCheltuiala = document.getElementById('tip-cheltuiala').value;
             const materialSection = document.getElementById('material-categories-section');
+            const nonMaterialSection = document.getElementById('non-material-suma-section');
             
             if (tipCheltuiala === 'materiale') {
                 materialSection.style.display = 'block';
+                nonMaterialSection.style.display = 'none';
+                document.getElementById('cantitate').required = true;
+                document.getElementById('pret-unitar').required = true;
+                document.getElementById('suma-direct').required = false;
             } else {
                 materialSection.style.display = 'none';
+                nonMaterialSection.style.display = 'block';
                 // Reset câmpurile
                 document.getElementById('categorie-material').value = '';
                 document.getElementById('subcategorie-material').value = '';
                 document.getElementById('cantitate').value = '';
                 document.getElementById('unitate-masura').value = '';
+                document.getElementById('pret-unitar').value = '';
+                
+                // Set required pentru non-materiale
+                document.getElementById('cantitate').required = false;
+                document.getElementById('pret-unitar').required = false;
+                document.getElementById('suma-direct').required = true;
             }
         }
 
@@ -432,7 +540,7 @@
             if (!cheltuieli || cheltuieli.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="5">
+                        <td colspan="7">
                             <div class="empty-state">
                                 <div class="empty-state-icon">💰</div>
                                 <h3>Nu există cheltuieli pentru acest proiect</h3>
@@ -444,29 +552,33 @@
                 return;
             }
 
+            console.log(cheltuieli);
+
             tbody.innerHTML = cheltuieli.map(ch => {
                 let descriereCompleta = ch.descriere;
                 
                 // Adaugă categoria și subcategoria dacă există
                 if (ch.categorieMaterial) {
-                    descriereCompleta += ` <span class="badge badge-info" style="font-size: 11px;">${ch.categorieMaterial}</span>`;
+                    descriereCompleta += ` <br><span class="badge badge-info" style="font-size: 11px;">${ch.categorieMaterial}</span>`;
                     if (ch.subcategorieMaterial) {
                         descriereCompleta += ` <span class="badge" style="font-size: 11px; background: #6c757d; color: white;">${ch.subcategorieMaterial}</span>`;
                     }
                 }
                 
                 // Adaugă cantitatea dacă există
-                if (ch.cantitate) {
-                    descriereCompleta += ` <br><small style="color: #666;">Cantitate: ${formatNumber(ch.cantitate)} ${ch.unitateMasura || ''}</small>`;
-                }
+                //if (ch.cantitate) {
+                //    descriereCompleta += ` <br><small style="color: #666;">Cantitate: ${formatNumber(ch.cantitate)} ${ch.unitateMasura || ''}</small>`;
+                //}
                 
                 return `
                 <tr>
                     <td>${formatDate(ch.dataCheltuiala)}</td>
                     <td><span class="badge badge-info">${ch.tipCheltuiala}</span></td>
                     <td>${descriereCompleta}</td>
-                    <td><strong>${formatCurrency(ch.suma)}</strong></td>
-                    <td>
+                    <td style="text-align: left;">${ch.cantitate ? formatNumber(ch.cantitate) + ' ' + (ch.unitateMasura || '') : '-'}</td>
+                    <td style="text-align: left;">${ch.pretUnitar ? formatCurrency(ch.pretUnitar) : '-'}</td>
+                    <td style="text-align: left;"><strong>${formatCurrency(ch.suma)}</strong></td>
+                    <td style="text-align: center;">
                         <button class="btn btn-sm btn-primary" onclick="editCheltuiala(${ch.id})">✏️</button>
                         <button class="btn btn-sm btn-danger" onclick="deleteCheltuiala(${ch.id}, '${ch.descriere}')">🗑️</button>
                     </td>
@@ -560,6 +672,7 @@
             
             // Inițializează categoriile
             initializeMaterialCategories();
+            //document.getElementById('tip-cehltuiala').value = 'materiale';
             toggleMaterialCategories();
             
             document.getElementById('cheltuialaModal').classList.add('active');
@@ -573,7 +686,7 @@
                 document.getElementById('cheltuiala-modal-title').textContent = 'Editează Cheltuială';
                 document.getElementById('cheltuiala-id').value = cheltuiala.id;
                 document.getElementById('tip-cheltuiala').value = cheltuiala.tipCheltuiala;
-                document.getElementById('suma').value = cheltuiala.suma;
+																		
                 document.getElementById('descriere-cheltuiala').value = cheltuiala.descriere;
                 document.getElementById('data-cheltuiala').value = cheltuiala.dataCheltuiala ? cheltuiala.dataCheltuiala.split('T')[0] : '';
                 document.getElementById('observatii-cheltuiala').value = cheltuiala.observatii || '';
@@ -582,43 +695,68 @@
                 initializeMaterialCategories();
                 toggleMaterialCategories();
                 
-                // Populează câmpurile materiale dacă există
-                if (cheltuiala.categorieMaterial) {
-                    document.getElementById('categorie-material').value = cheltuiala.categorieMaterial;
-                    updateSubcategories();
-                    if (cheltuiala.subcategorieMaterial) {
-                        document.getElementById('subcategorie-material').value = cheltuiala.subcategorieMaterial;
+                // Populează câmpurile în funcție de tip
+                if (cheltuiala.tipCheltuiala === 'materiale') {
+                    // Materiale: populează categorie, subcategorie, cantitate, preț unitar
+                    if (cheltuiala.categorieMaterial) {
+                        document.getElementById('categorie-material').value = cheltuiala.categorieMaterial;
+                        updateSubcategories();
+                        if (cheltuiala.subcategorieMaterial) {
+                            document.getElementById('subcategorie-material').value = cheltuiala.subcategorieMaterial;
+                        }
                     }
+                    if (cheltuiala.cantitate) {
+                        document.getElementById('cantitate').value = cheltuiala.cantitate;
+                    }
+                    if (cheltuiala.unitateMasura) {
+                        document.getElementById('unitate-masura').value = cheltuiala.unitateMasura;
+                    }
+                    if (cheltuiala.pretUnitar) {
+                        document.getElementById('pret-unitar').value = cheltuiala.pretUnitar;
+                    }
+                } else {
+                    // Non-materiale: populează doar suma
+                    document.getElementById('suma-direct').value = cheltuiala.suma;
                 }
-                if (cheltuiala.cantitate) {
-                    document.getElementById('cantitate').value = cheltuiala.cantitate;
-                }
-                if (cheltuiala.unitateMasura) {
-                    document.getElementById('unitate-masura').value = cheltuiala.unitateMasura;
-                }
-                
+										   
                 document.getElementById('cheltuialaModal').classList.add('active');
             } catch (error) {
                 showError('Eroare la încărcarea cheltuielii');
             }
         }
+        
 
         async function saveCheltuiala(event) {
             event.preventDefault();
             
             const tipCheltuiala = document.getElementById('tip-cheltuiala').value;
             
+            let suma;
+            let cantitate = null;
+            let pretUnitar = null;
+            
+            if (tipCheltuiala === 'materiale') {
+                // Pentru materiale: calculează suma = cantitate × preț unitar
+                cantitate = parseFloat(document.getElementById('cantitate').value) || 0;
+                pretUnitar = parseFloat(document.getElementById('pret-unitar').value) || 0;
+                suma = cantitate * pretUnitar;
+            } else {
+                // Pentru non-materiale: ia suma directă
+                suma = parseFloat(document.getElementById('suma-direct').value) || 0;
+            }
+
             const cheltuialaData = {
                 proiectId: proiectId,
                 tipCheltuiala: tipCheltuiala,
                 descriere: document.getElementById('descriere-cheltuiala').value,
-                suma: parseFloat(document.getElementById('suma').value),
+                suma: suma,
                 dataCheltuiala: document.getElementById('data-cheltuiala').value || null,
                 observatii: document.getElementById('observatii-cheltuiala').value || null,
                 categorieMaterial: tipCheltuiala === 'materiale' ? (document.getElementById('categorie-material').value || null) : null,
                 subcategorieMaterial: tipCheltuiala === 'materiale' ? (document.getElementById('subcategorie-material').value || null) : null,
-                cantitate: tipCheltuiala === 'materiale' ? (parseFloat(document.getElementById('cantitate').value) || null) : null,
-                unitateMasura: tipCheltuiala === 'materiale' ? (document.getElementById('unitate-masura').value || null) : null
+                cantitate: cantitate,
+                unitateMasura: tipCheltuiala === 'materiale' ? (document.getElementById('unitate-masura').value || null) : null,
+                pretUnitar: pretUnitar
             };
 
             try {
@@ -667,6 +805,164 @@
         }
 
         loadProiectData();
+        
+        let currentExcelData = null;
+        let currentCalculResult = null;
+
+        // Încarcă calcule salvate pentru proiect
+        async function loadCalculeCant() {
+            try {
+                const calcule = await API.getCalculeByProiect(proiectId);
+                displayCalculeSalvate(calcule);
+            } catch (error) {
+                console.error('Eroare la încărcarea calculelor:', error);
+            }
+        }
+
+        function displayCalculeSalvate(calcule) {
+            const container = document.getElementById('calcule-items');
+            
+            if (!calcule || calcule.length === 0) {
+                container.innerHTML = '<p style="color: #999;">Nu există calcule salvate pentru acest proiect.</p>';
+                return;
+            }
+
+            container.innerHTML = calcule.map(c => `
+                <div class="stat-card" style="margin-bottom: 10px; cursor: pointer;" onclick="afiseazaCalculSalvat(${c.id})">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4 style="margin: 0;">${c.numeFisier}</h4>
+                            <small>${formatDate(c.dataUpload)}</small>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 1.5em; font-weight: bold; color: var(--success-color);">
+                                ${c.totalCantMetri} ml
+                            </div>
+                            <button class="btn btn-sm btn-danger" onclick="event.stopPropagation(); deleteCalculCant(${c.id}, '${c.numeFisier}')">
+                                🗑️ Șterge
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function afiseazaCalculSalvat(calculId) {
+            try {
+                const calcul = await API.getCalculCant(calculId);
+                afiseazaRezultatCant({
+                    totalCantCm: calcul.totalCantCm,
+                    totalCantMetri: calcul.totalCantMetri,
+                    detalii: calcul.detalii
+                }, proiectId);
+            } catch (error) {
+                showError('Eroare la încărcarea calculului');
+            }
+        }
+
+        async function deleteCalculCant(id, numeFisier) {
+            if (confirmDelete(numeFisier)) {
+                try {
+                    await API.deleteCalculCant(id);
+                    showSuccess('Calcul șters cu succes!');
+                    loadCalculeCant();
+                    document.getElementById('calcul-result').style.display = 'none';
+                } catch (error) {
+                    showError('Eroare la ștergerea calculului');
+                }
+            }
+        }
+
+        function openUploadExcelModal() {
+            document.getElementById('uploadExcelForm').reset();
+            document.getElementById('preview-cant').style.display = 'none';
+            currentExcelData = null;
+            currentCalculResult = null;
+            document.getElementById('uploadExcelModal').classList.add('active');
+        }
+
+        function closeUploadExcelModal() {
+            document.getElementById('uploadExcelModal').classList.remove('active');
+        }
+
+        // Previzualizare când se selectează fișier
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('excel-file');
+            if (fileInput) {
+                fileInput.addEventListener('change', async function(e) {
+                    const file = e.target.files[0];
+                    if (!file) return;
+
+                    try {
+                        showLoading();
+                        const linii = await procesareExcelCant(file);
+                        currentExcelData = linii;
+                        currentCalculResult = calculeazaCantLocal(linii);
+                        
+                        // Afișează previzualizare
+                        const previewDiv = document.getElementById('preview-content');
+                        previewDiv.innerHTML = `
+                            <div class="stat-card success">
+                                <h4>Total Cant Necesar:</h4>
+                                <div style="font-size: 2em; font-weight: bold;">
+                                    ${currentCalculResult.totalCantMetri} ml
+                                </div>
+                                <div style="color: #666;">(${currentCalculResult.totalCantCm} cm)</div>
+                            </div>
+                            <p><strong>Linii procesate:</strong> ${linii.length}</p>
+                        `;
+                        document.getElementById('preview-cant').style.display = 'block';
+                        hideLoading();
+                    } catch (error) {
+                        hideLoading();
+                        showError(error.message);
+                        e.target.value = '';
+                    }
+                });
+            }
+        });
+
+        async function uploadExcelCant(event) {
+            event.preventDefault();
+
+            if (!currentExcelData || !currentCalculResult) {
+                showError('Te rog selectează un fișier Excel valid');
+                return;
+            }
+
+            const fileInput = document.getElementById('excel-file');
+            const fileName = fileInput.files[0].name;
+            const observatii = document.getElementById('observatii-cant').value;
+
+            const data = {
+                proiectId: proiectId,
+                numeFisier: fileName,
+                linii: currentExcelData,
+                observatii: observatii || null
+            };
+
+            try {
+                const result = await API.createCalculCant(data);
+                showSuccess('Calcul salvat cu succes!');
+                closeUploadExcelModal();
+                loadCalculeCant();
+                afiseazaRezultatCant(result, proiectId);
+            } catch (error) {
+                showError('Eroare la salvarea calculului');
+            }
+        }
+
+        window.onclick = function(event) {
+            const uploadModal = document.getElementById('uploadExcelModal');
+            if (event.target === uploadModal) {
+                closeUploadExcelModal();
+            }
+        };
+
+        // Încarcă calcule când pagina se încarcă
+        if (typeof proiectId !== 'undefined' && proiectId) {
+            loadCalculeCant();
+        }
     </script>
 </body>
 </html>

@@ -16,7 +16,7 @@ namespace AtelierTamplarie.Data
         public DbSet<Cheltuiala> Cheltuieli { get; set; }
         public DbSet<Stoc> Stocuri { get; set; }
         public DbSet<MiscareStoc> MiscariStoc { get; set; }
-        public DbSet<CalculCant> CalculeCant { get; set; }
+        public DbSet<CalculCant> CalculeCant { get; set; }  // NOU
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

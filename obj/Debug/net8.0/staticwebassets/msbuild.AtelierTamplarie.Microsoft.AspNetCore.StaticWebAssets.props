@@ -66,8 +66,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>9ts3tau1go</Fingerprint>
-      <Integrity>nXlmgPUcMhAyD5c45svwAB1YTxB0qWdoUoA1Mh2SndQ=</Integrity>
+      <Fingerprint>duqcfkp22y</Fingerprint>
+      <Integrity>G55ybdWO6n3qsZ6QG9V7O86CQo56mDXRSVlAKeQoz2Y=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\style.css'))</OriginalItemSpec>
@@ -102,11 +102,29 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>pzokuv5lx5</Fingerprint>
-      <Integrity>hQVlsscSekxpaq22a53PHoVwBvIluRCcACCzv9Yv3MA=</Integrity>
+      <Fingerprint>zs7fvtaqfz</Fingerprint>
+      <Integrity>vffxNNxinBeEMthRjZWdd/QPIXNwV7yX7GWOLP+eVHg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\api.js'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\calcul-cant.js'))">
+      <SourceType>Package</SourceType>
+      <SourceId>AtelierTamplarie</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/AtelierTamplarie</BasePath>
+      <RelativePath>js/calcul-cant.js</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>v62d4f1p5d</Fingerprint>
+      <Integrity>qUNEWXqcY8/Q37OHztVUm9U9EDxjvMBe9RXDP4DGoM4=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\calcul-cant.js'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\material-categories.js'))">
       <SourceType>Package</SourceType>
@@ -138,8 +156,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>x7tanc2qch</Fingerprint>
-      <Integrity>k4ZavYajfMSuRiCV3BRGyZ/nh9gV+5tDFI0CsSbuqTk=</Integrity>
+      <Fingerprint>ysmbg6jt1k</Fingerprint>
+      <Integrity>zl8BCNtLI5uCMdpnCkGqEkS+lmpvivCQaisv94nHYeY=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\proiect-detalii.html'))</OriginalItemSpec>

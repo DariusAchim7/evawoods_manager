@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AtelierTamplarie")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e499e5dc8fe213e75e3ed87e25005ac248ff31a5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a9d86997252e7a6552f8e9057b345be6b7c574c1")]
 [assembly: System.Reflection.AssemblyProductAttribute("AtelierTamplarie")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AtelierTamplarie")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -55,7 +55,10 @@ namespace AtelierTamplarie.Models
         [Column("unitate_masura")]
         [MaxLength(20)]
         public string? UnitateMasura { get; set; }
-
+        
+        [Column("pret_unitar")]
+        [Precision(10, 2)]
+        public decimal? PretUnitar { get; set; }
         // Relație
         [ForeignKey("ProiectId")]
         [JsonIgnore]

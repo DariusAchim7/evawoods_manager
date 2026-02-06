@@ -136,6 +136,23 @@ const API = {
         return await this.request('DELETE', `/MiscariStoc/${id}`);
     },
     
+    // Calcul Cant - NOU
+    async createCalculCant(data) {
+        return await this.request('POST', '/CalculCant', data);
+    },
+    
+    async getCalculCant(id) {
+        return await this.request('GET', `/CalculCant/${id}`);
+    },
+    
+    async getCalculeByProiect(proiectId) {
+        return await this.request('GET', `/CalculCant/Proiect/${proiectId}`);
+    },
+    
+    async deleteCalculCant(id) {
+        return await this.request('DELETE', `/CalculCant/${id}`);
+    },
+    
     // Funcție generică pentru cereri HTTP
     async request(method, endpoint, data = null) {
         const options = {

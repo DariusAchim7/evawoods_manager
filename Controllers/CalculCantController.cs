@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using AtelierTamplarie.Data;
 using AtelierTamplarie.Models;
 using AtelierTamplarie.DTOs;
+using System.Text.Json;
 
 namespace AtelierTamplarie.Controllers
 {
@@ -11,153 +12,176 @@ namespace AtelierTamplarie.Controllers
     public class CalculCantController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
+        private const decimal PIERDERE_PER_LATURA_CM = 0.4m; // 4mm = 0.4cm
 
         public CalculCantController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/CalculCant/proiect/5
-        [HttpGet("proiect/{proiectId}")]
-        public async Task<ActionResult<IEnumerable<CalculCantDto>>> GetCalculeByProiect(int proiectId)
+        // POST: api/CalculCant
+        [HttpPost]
+        public async Task<ActionResult<CalculCantDto>> CreateCalcul(CreateCalculCantDto dto)
         {
-            var calcule = await _context.CalculeCant
-                .Where(c => c.ProiectId == proiectId)
-                .OrderByDescending(c => c.DataCalcul)
-                .Select(c => new CalculCantDto
-                {
-                    Id = c.Id,
-                    ProiectId = c.ProiectId,
-                    Nume = c.Nume,
-                    TotalCant = c.TotalCant,
-                    Detalii = c.Detalii,
-                    DataCalcul = c.DataCalcul
-                })
-                .ToListAsync();
+            // Verifică dacă proiectul există
+            var proiect = await _context.Proiecte.FindAsync(dto.ProiectId);
+            if (proiect == null)
+            {
+                return BadRequest(new { message = "Proiectul specificat nu există" });
+            }
 
-            return Ok(calcule);
+            // Calculează totalul
+            var rezultat = CalculeazaCant(dto.Linii);
+
+            // Salvează în baza de date
+            var calculCant = new CalculCant
+            {
+                ProiectId = dto.ProiectId,
+                NumeFisier = dto.NumeFisier,
+                TotalCantCm = rezultat.TotalCantCm,
+                TotalCantMetri = rezultat.TotalCantMetri,
+                DetaliiJson = JsonSerializer.Serialize(rezultat.Detalii),
+                Observatii = dto.Observatii
+            };
+
+            _context.CalculeCant.Add(calculCant);
+            await _context.SaveChangesAsync();
+
+            // Returnează rezultatul
+            var calculDto = new CalculCantDto
+            {
+                Id = calculCant.Id,
+                ProiectId = calculCant.ProiectId,
+                NumeFisier = calculCant.NumeFisier,
+                DataUpload = calculCant.DataUpload,
+                TotalCantCm = calculCant.TotalCantCm,
+                TotalCantMetri = calculCant.TotalCantMetri,
+                Detalii = rezultat.Detalii,
+                Observatii = calculCant.Observatii
+            };
+
+            return CreatedAtAction(nameof(GetCalcul), new { id = calculCant.Id }, calculDto);
         }
 
         // GET: api/CalculCant/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<CalculCantDto>> GetCalculCant(int id)
+        public async Task<ActionResult<CalculCantDto>> GetCalcul(int id)
         {
             var calcul = await _context.CalculeCant.FindAsync(id);
 
             if (calcul == null)
             {
-                return NotFound(new { message = "Calcul cant nu a fost găsit" });
+                return NotFound(new { message = "Calculul nu a fost găsit" });
             }
 
-            var dto = new CalculCantDto
+            var detalii = string.IsNullOrEmpty(calcul.DetaliiJson)
+                ? new List<DetaliuLinieCant>()
+                : JsonSerializer.Deserialize<List<DetaliuLinieCant>>(calcul.DetaliiJson) ?? new List<DetaliuLinieCant>();
+
+            var calculDto = new CalculCantDto
             {
                 Id = calcul.Id,
                 ProiectId = calcul.ProiectId,
-                Nume = calcul.Nume,
-                TotalCant = calcul.TotalCant,
-                Detalii = calcul.Detalii,
-                DataCalcul = calcul.DataCalcul
+                NumeFisier = calcul.NumeFisier,
+                DataUpload = calcul.DataUpload,
+                TotalCantCm = calcul.TotalCantCm,
+                TotalCantMetri = calcul.TotalCantMetri,
+                Detalii = detalii,
+                Observatii = calcul.Observatii
             };
 
-            return Ok(dto);
+            return Ok(calculDto);
         }
 
-        // POST: api/CalculCant
-        [HttpPost]
-        public async Task<ActionResult<CalculCantDto>> PostCalculCant(CreateCalculCantDto dto)
+        // GET: api/CalculCant/Proiect/5
+        [HttpGet("Proiect/{proiectId}")]
+        public async Task<ActionResult<IEnumerable<CalculCantDto>>> GetCalculeByProiect(int proiectId)
         {
-            // Verifică dacă proiectul există
-            var proiectExists = await _context.Proiecte.AnyAsync(p => p.Id == dto.ProiectId);
-            if (!proiectExists)
+            var calcule = await _context.CalculeCant
+                .Where(c => c.ProiectId == proiectId)
+                .OrderByDescending(c => c.DataUpload)
+                .ToListAsync();
+
+            var calculeDto = calcule.Select(c => new CalculCantDto
             {
-                return BadRequest(new { message = "Proiectul nu există" });
-            }
+                Id = c.Id,
+                ProiectId = c.ProiectId,
+                NumeFisier = c.NumeFisier,
+                DataUpload = c.DataUpload,
+                TotalCantCm = c.TotalCantCm,
+                TotalCantMetri = c.TotalCantMetri,
+                Detalii = string.IsNullOrEmpty(c.DetaliiJson)
+                    ? new List<DetaliuLinieCant>()
+                    : JsonSerializer.Deserialize<List<DetaliuLinieCant>>(c.DetaliiJson) ?? new List<DetaliuLinieCant>(),
+                Observatii = c.Observatii
+            }).ToList();
 
-            var calcul = new CalculCant
-            {
-                ProiectId = dto.ProiectId,
-                Nume = dto.Nume,
-                TotalCant = dto.TotalCant,
-                Detalii = dto.Detalii,
-                DataCalcul = dto.DataCalcul ?? DateTime.UtcNow
-            };
-
-            _context.CalculeCant.Add(calcul);
-            await _context.SaveChangesAsync();
-
-            var resultDto = new CalculCantDto
-            {
-                Id = calcul.Id,
-                ProiectId = calcul.ProiectId,
-                Nume = calcul.Nume,
-                TotalCant = calcul.TotalCant,
-                Detalii = calcul.Detalii,
-                DataCalcul = calcul.DataCalcul
-            };
-
-            return CreatedAtAction(nameof(GetCalculCant), new { id = calcul.Id }, resultDto);
-        }
-
-        // PUT: api/CalculCant/5
-        [HttpPut("{id}")]
-        public async Task<ActionResult<CalculCantDto>> PutCalculCant(int id, UpdateCalculCantDto dto)
-        {
-            var calcul = await _context.CalculeCant.FindAsync(id);
-            if (calcul == null)
-            {
-                return NotFound(new { message = "Calcul cant nu a fost găsit" });
-            }
-
-            // Actualizează doar câmpurile care nu sunt null în DTO
-            if (dto.Nume != null) calcul.Nume = dto.Nume;
-            if (dto.TotalCant.HasValue) calcul.TotalCant = dto.TotalCant.Value;
-            if (dto.Detalii != null) calcul.Detalii = dto.Detalii;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CalculCantExists(id))
-                {
-                    return NotFound(new { message = "Calcul cant nu mai există" });
-                }
-                throw;
-            }
-
-            var resultDto = new CalculCantDto
-            {
-                Id = calcul.Id,
-                ProiectId = calcul.ProiectId,
-                Nume = calcul.Nume,
-                TotalCant = calcul.TotalCant,
-                Detalii = calcul.Detalii,
-                DataCalcul = calcul.DataCalcul
-            };
-
-            return Ok(resultDto);
+            return Ok(calculeDto);
         }
 
         // DELETE: api/CalculCant/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCalculCant(int id)
+        public async Task<IActionResult> DeleteCalcul(int id)
         {
             var calcul = await _context.CalculeCant.FindAsync(id);
             if (calcul == null)
             {
-                return NotFound(new { message = "Calcul cant nu a fost găsit" });
+                return NotFound(new { message = "Calculul nu a fost găsit" });
             }
 
             _context.CalculeCant.Remove(calcul);
             await _context.SaveChangesAsync();
 
-            return Ok(new { message = "Calcul cant șters cu succes", id = id });
+            return Ok(new { message = "Calcul șters cu succes" });
         }
 
-        private bool CalculCantExists(int id)
+        // Funcția de calcul cant
+        private RezultatCalculCant CalculeazaCant(List<LinieExcelCant> linii)
         {
-            return _context.CalculeCant.Any(e => e.Id == id);
+            var rezultat = new RezultatCalculCant();
+            decimal totalCm = 0;
+
+            foreach (var linie in linii)
+            {
+                var detaliu = new DetaliuLinieCant
+                {
+                    Lungime = linie.Lungime,
+                    Latime = linie.Latime,
+                    CantLungime = linie.CantLungime,
+                    CantLatime = linie.CantLatime
+                };
+
+                // Convertește mm în cm și calculează cantul
+                // Lungime: mm → cm, apoi adaugă pierdere tehnologică (0.4cm per latură)
+                decimal lungimeMm = linie.Lungime;
+                decimal latimeMm = linie.Latime;
+
+                // Calcul cant pe lungime
+                decimal lungimeCantata = 0;
+                if (linie.CantLungime > 0)
+                {
+                    lungimeCantata = (lungimeMm / 10m) * linie.CantLungime + (PIERDERE_PER_LATURA_CM * linie.CantLungime);
+                }
+
+                // Calcul cant pe lățime
+                decimal latimeCantata = 0;
+                if (linie.CantLatime > 0)
+                {
+                    latimeCantata = (latimeMm / 10m) * linie.CantLatime + (PIERDERE_PER_LATURA_CM * linie.CantLatime);
+                }
+
+                detaliu.LungimeCantata = lungimeCantata;
+                detaliu.LatimeCantata = latimeCantata;
+                detaliu.TotalLinie = lungimeCantata + latimeCantata;
+
+                totalCm += detaliu.TotalLinie;
+                rezultat.Detalii.Add(detaliu);
+            }
+
+            rezultat.TotalCantCm = Math.Round(totalCm, 2);
+            rezultat.TotalCantMetri = Math.Round(totalCm / 100m, 2);
+
+            return rezultat;
         }
     }
 }

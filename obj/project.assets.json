@@ -4707,11 +4707,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\AtelierTamplarie.csproj",
+      "projectUniqueName": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\AtelierTamplarie.csproj",
       "projectName": "AtelierTamplarie",
-      "projectPath": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\AtelierTamplarie.csproj",
+      "projectPath": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\AtelierTamplarie.csproj",
       "packagesPath": "C:\\Users\\S955JIW.VW\\.nuget\\packages\\",
-      "outputPath": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\obj\\",
+      "outputPath": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

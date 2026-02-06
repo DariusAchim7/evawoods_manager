@@ -38,7 +38,8 @@ namespace AtelierTamplarie.Controllers
                     CategorieMaterial = ch.CategorieMaterial,
                     SubcategorieMaterial = ch.SubcategorieMaterial,
                     Cantitate = ch.Cantitate,
-                    UnitateMasura = ch.UnitateMasura
+                    UnitateMasura = ch.UnitateMasura,
+                    PretUnitar = ch.PretUnitar
                 })
                 .ToListAsync();
 
@@ -66,7 +67,8 @@ namespace AtelierTamplarie.Controllers
                     CategorieMaterial = ch.CategorieMaterial,
                     SubcategorieMaterial = ch.SubcategorieMaterial,
                     Cantitate = ch.Cantitate,
-                    UnitateMasura = ch.UnitateMasura
+                    UnitateMasura = ch.UnitateMasura,
+                    PretUnitar = ch.PretUnitar
                 })
                 .FirstOrDefaultAsync();
 
@@ -91,6 +93,21 @@ namespace AtelierTamplarie.Controllers
             var cheltuieli = await _context.Cheltuieli
                 .Where(ch => ch.ProiectId == proiectId)
                 .OrderBy(ch => ch.DataCheltuiala)
+                .Select(ch => new CheltuialaDto
+                {
+                    Id = ch.Id,
+                    ProiectId = ch.ProiectId,
+                    TipCheltuiala = ch.TipCheltuiala,
+                    Descriere = ch.Descriere,
+                    Suma = ch.Suma,
+                    DataCheltuiala = ch.DataCheltuiala,
+                    Observatii = ch.Observatii,
+                    CategorieMaterial = ch.CategorieMaterial,
+                    SubcategorieMaterial = ch.SubcategorieMaterial,
+                    Cantitate = ch.Cantitate,
+                    UnitateMasura = ch.UnitateMasura,
+                    PretUnitar = ch.PretUnitar
+                })
                 .ToListAsync();
 
             var totalCheltuieli = cheltuieli.Sum(ch => ch.Suma);
@@ -167,7 +184,8 @@ namespace AtelierTamplarie.Controllers
                 CategorieMaterial = dto.CategorieMaterial,
                 SubcategorieMaterial = dto.SubcategorieMaterial,
                 Cantitate = dto.Cantitate,
-                UnitateMasura = dto.UnitateMasura
+                UnitateMasura = dto.UnitateMasura,
+                PretUnitar = dto.PretUnitar
             };
 
             _context.Cheltuieli.Add(cheltuiala);
@@ -187,7 +205,8 @@ namespace AtelierTamplarie.Controllers
                 CategorieMaterial = cheltuiala.CategorieMaterial,
                 SubcategorieMaterial = cheltuiala.SubcategorieMaterial,
                 Cantitate = cheltuiala.Cantitate,
-                UnitateMasura = cheltuiala.UnitateMasura
+                UnitateMasura = cheltuiala.UnitateMasura,
+                PretUnitar = cheltuiala.PretUnitar
             };
 
             return CreatedAtAction(nameof(GetCheltuiala), new { id = cheltuiala.Id }, cheltuialaDto);
@@ -220,6 +239,7 @@ namespace AtelierTamplarie.Controllers
             cheltuiala.SubcategorieMaterial = dto.SubcategorieMaterial;
             cheltuiala.Cantitate = dto.Cantitate;
             cheltuiala.UnitateMasura = dto.UnitateMasura;
+            cheltuiala.PretUnitar = dto.PretUnitar;
 
             try
             {
@@ -248,7 +268,8 @@ namespace AtelierTamplarie.Controllers
                 CategorieMaterial = cheltuiala.CategorieMaterial,
                 SubcategorieMaterial = cheltuiala.SubcategorieMaterial,
                 Cantitate = cheltuiala.Cantitate,
-                UnitateMasura = cheltuiala.UnitateMasura
+                UnitateMasura = cheltuiala.UnitateMasura,
+                PretUnitar = cheltuiala.PretUnitar
             };
 
             return Ok(cheltuialaDto);

@@ -276,6 +276,11 @@ td {
     border-bottom: 1px solid var(--light-bg);
 }
 
+/* Aliniere text pentru coloane numerice și acțiuni */
+td:nth-last-child(1) {
+    text-align: center; /* Acțiuni */
+}
+
 tbody tr:hover {
     background: #f8f9fa;
 }
@@ -475,26 +480,7 @@ tbody tr:hover {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .btn {
-        padding: 12px 20px;
-        font-size: 16px;
-        min-height: 44px; /* Apple touch target */
-    }
-    
-    /* Input-uri mai mari */
-    input, select, textarea {
-        font-size: 16px; /* Previne zoom pe iOS */
-        min-height: 44px;
-    }
-    
     /* Tabele mai compacte */
-    table {
-        font-size: 14px;
-    }
-    
-    th, td {
-        padding: 8px 4px;
-    }
     header .container {
         flex-direction: column;
         gap: 15px;
@@ -518,7 +504,14 @@ tbody tr:hover {
         align-items: flex-start;
         gap: 15px;
     }
-
+    
+    table {
+        font-size: 14px;
+    }
+    
+    th, td {
+        padding: 10px;
+    }
 }
 
 /* Utilități */

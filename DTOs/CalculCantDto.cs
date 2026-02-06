@@ -1,47 +1,52 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace AtelierTamplarie.DTOs
 {
-    // DTO pentru creare calcul cant
+    // DTO pentru datele din Excel
+    public class LinieExcelCant
+    {
+        public decimal Lungime { get; set; }      // mm
+        public decimal Latime { get; set; }       // mm
+        public int CantLungime { get; set; }      // 0, 1, sau 2
+        public int CantLatime { get; set; }       // 0, 1, sau 2
+    }
+
+    // DTO pentru rezultatul calculului
+    public class RezultatCalculCant
+    {
+        public decimal TotalCantCm { get; set; }
+        public decimal TotalCantMetri { get; set; }
+        public List<DetaliuLinieCant> Detalii { get; set; } = new();
+    }
+
+    public class DetaliuLinieCant
+    {
+        public decimal Lungime { get; set; }
+        public decimal Latime { get; set; }
+        public int CantLungime { get; set; }
+        public int CantLatime { get; set; }
+        public decimal LungimeCantata { get; set; }  // cm
+        public decimal LatimeCantata { get; set; }    // cm
+        public decimal TotalLinie { get; set; }       // cm
+    }
+
+    // DTO pentru crearea unui calcul nou
     public class CreateCalculCantDto
     {
-        [Required(ErrorMessage = "Proiect ID este obligatoriu")]
         public int ProiectId { get; set; }
-
-        [Required(ErrorMessage = "Numele este obligatoriu")]
-        [StringLength(200, ErrorMessage = "Numele nu poate depăși 200 caractere")]
-        public string Nume { get; set; } = string.Empty;
-
-        [Required(ErrorMessage = "Total cant este obligatoriu")]
-        [Range(0, double.MaxValue, ErrorMessage = "Total cant trebuie să fie pozitiv")]
-        public decimal TotalCant { get; set; }
-
-        [Required(ErrorMessage = "Detaliile sunt obligatorii")]
-        public string Detalii { get; set; } = string.Empty; // JSON
-
-        public DateTime? DataCalcul { get; set; }
+        public string NumeFisier { get; set; } = string.Empty;
+        public List<LinieExcelCant> Linii { get; set; } = new();
+        public string? Observatii { get; set; }
     }
 
-    // DTO pentru actualizare calcul cant
-    public class UpdateCalculCantDto
-    {
-        [StringLength(200, ErrorMessage = "Numele nu poate depăși 200 caractere")]
-        public string? Nume { get; set; }
-
-        [Range(0, double.MaxValue, ErrorMessage = "Total cant trebuie să fie pozitiv")]
-        public decimal? TotalCant { get; set; }
-
-        public string? Detalii { get; set; }
-    }
-
-    // DTO pentru returnare calcul cant
+    // DTO pentru returnarea unui calcul salvat
     public class CalculCantDto
     {
         public int Id { get; set; }
         public int ProiectId { get; set; }
-        public string Nume { get; set; } = string.Empty;
-        public decimal TotalCant { get; set; }
-        public string Detalii { get; set; } = string.Empty;
-        public DateTime DataCalcul { get; set; }
+        public string NumeFisier { get; set; } = string.Empty;
+        public DateTime DataUpload { get; set; }
+        public decimal TotalCantCm { get; set; }
+        public decimal TotalCantMetri { get; set; }
+        public List<DetaliuLinieCant> Detalii { get; set; } = new();
+        public string? Observatii { get; set; }
     }
 }

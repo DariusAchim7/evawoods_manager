@@ -1,43 +1,47 @@
 {
   "Files": [
     {
-      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\cheltuieli.html",
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\cheltuieli.html",
       "PackagePath": "staticwebassets\\cheltuieli.html"
     },
     {
-      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\client-detalii.html",
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\client-detalii.html",
       "PackagePath": "staticwebassets\\client-detalii.html"
     },
     {
-      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\clienti.html",
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\clienti.html",
       "PackagePath": "staticwebassets\\clienti.html"
     },
     {
-      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\css\\style.css",
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\css\\style.css",
       "PackagePath": "staticwebassets\\css\\style.css"
     },
     {
-      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\index.html",
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\js\\api.js",
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\js\\api.js",
       "PackagePath": "staticwebassets\\js\\api.js"
     },
     {
-      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\js\\material-categories.js",
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\js\\calcul-cant.js",
+      "PackagePath": "staticwebassets\\js\\calcul-cant.js"
+    },
+    {
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\js\\material-categories.js",
       "PackagePath": "staticwebassets\\js\\material-categories.js"
     },
     {
-      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\proiect-detalii.html",
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\proiect-detalii.html",
       "PackagePath": "staticwebassets\\proiect-detalii.html"
     },
     {
-      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\proiecte.html",
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\proiecte.html",
       "PackagePath": "staticwebassets\\proiecte.html"
     },
     {
-      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\wwwroot\\stoc.html",
+      "Id": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\stoc.html",
       "PackagePath": "staticwebassets\\stoc.html"
     },
     {

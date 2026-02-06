@@ -183,7 +183,7 @@
             }
 
             tbody.innerHTML = proiecte.slice(0, 5).map(p => `
-                <tr>
+                <tr onclick="window.location.href='proiect-detalii.html?id=${p.id}'" style="cursor: pointer;">
                     <td><strong>${p.numeProiect}</strong></td>
                     <td>${p.clientNume}</td>
                     <td>${getStatusBadge(p.status)}</td>
