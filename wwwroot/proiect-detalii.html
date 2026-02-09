@@ -180,6 +180,35 @@
                 </div>
             </div>
         </div>
+
+        <!-- Galerie Imagini -->
+        <div class="content-section">
+            <div class="section-header">
+                <h2>📸 Galerie Imagini Proiect</h2>
+                <button class="btn btn-primary" onclick="openUploadImageModal()">
+                    📤 Upload Imagine
+                </button>
+            </div>
+
+            <div class="alert alert-info">
+                <strong>ℹ️ Tipuri imagini:</strong> Schită | Randare | Final<br>
+                <strong>Formate acceptate:</strong> JPG, PNG, GIF, WEBP (max 10MB)
+            </div>
+
+            <!-- Filtre imagini -->
+            <div style="margin-bottom: 20px;">
+                <button class="btn btn-sm" onclick="filterImagini('toate')" id="filter-toate">Toate</button>
+                <button class="btn btn-sm" onclick="filterImagini('schita')" id="filter-schita">Schițe</button>
+                <button class="btn btn-sm" onclick="filterImagini('randare')" id="filter-randare">Randări</button>
+                <button class="btn btn-sm" onclick="filterImagini('final')" id="filter-final">Finale</button>
+            </div>
+
+            <!-- Grid imagini -->
+            <div id="galerie-imagini" class="image-grid">
+                <p style="text-align: center; color: #999;">Se încarcă imagini...</p>
+            </div>
+        </div>
+
     
         <!-- Modal Upload Excel -->
         <div id="uploadExcelModal" class="modal">
@@ -367,6 +396,80 @@
                     <button type="submit" class="btn btn-success">💾 Salvează</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <!-- Modal Upload Imagine -->
+    <div id="uploadImageModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📤 Upload Imagine Proiect</h3>
+                <button class="close-btn" onclick="closeUploadImageModal()">&times;</button>
+            </div>
+
+            <form id="uploadImageForm" onsubmit="uploadImage(event)">
+                <div class="form-group">
+                    <label for="image-file">Selectează imagine *</label>
+                    <input type="file" id="image-file" accept="image/jpeg,image/png,image/gif,image/webp" required onchange="previewImage(event)">
+                    <small>Format: JPG, PNG, GIF, WEBP | Maxim: 10MB</small>
+                </div>
+
+                <!-- Preview imagine -->
+                <div id="image-preview" style="display: none; margin-bottom: 20px;">
+                    <img id="preview-img" style="max-width: 100%; max-height: 300px; border-radius: 8px; border: 2px solid #ddd;">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="tip-imagine">Tip Imagine *</label>
+                        <select id="tip-imagine" required>
+                            <option value="schita">Schită</option>
+                            <option value="randare">Randare</option>
+                            <option value="final">Final</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ordine-imagine">Ordine Afișare</label>
+                        <input type="number" id="ordine-imagine" value="0" min="0">
+                        <small>0 = prima imagine</small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="descriere-imagine">Descriere (opțional)</label>
+                    <textarea id="descriere-imagine" placeholder="Ex: Vedere frontală bucătărie"></textarea>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeUploadImageModal()">Anulează</button>
+                    <button type="submit" class="btn btn-success">📤 Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Vizualizare Imagine Mare -->
+    <div id="viewImageModal" class="modal">
+        <div class="modal-content" style="max-width: 90%; max-height: 90vh;">
+            <div class="modal-header">
+                <h3 id="view-image-title">Imagine</h3>
+                <button class="close-btn" onclick="closeViewImageModal()">&times;</button>
+            </div>
+            
+            <div style="text-align: center; overflow: auto;">
+                <img id="view-image-large" style="max-width: 100%; height: auto; border-radius: 8px;">
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <p><strong>Tip:</strong> <span id="view-image-tip"></span></p>
+                <p><strong>Descriere:</strong> <span id="view-image-descriere"></span></p>
+                <p><strong>Data upload:</strong> <span id="view-image-data"></span></p>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-danger" onclick="deleteCurrentImage()">🗑️ Șterge</button>
+                <button class="btn btn-secondary" onclick="closeViewImageModal()">Închide</button>
+            </div>
         </div>
     </div>
     
@@ -962,6 +1065,201 @@
         // Încarcă calcule când pagina se încarcă
         if (typeof proiectId !== 'undefined' && proiectId) {
             loadCalculeCant();
+        }
+
+        let toateImagini = [];
+        let currentImageId = null;
+        let currentFilter = 'toate';
+
+        // Încarcă imagini pentru proiect
+        async function loadImagini() {
+            try {
+                const imagini = await API.getImaginiByProiect(proiectId);
+                toateImagini = imagini;
+                displayImagini(imagini);
+            } catch (error) {
+                console.error('Eroare la încărcarea imaginilor:', error);
+                document.getElementById('galerie-imagini').innerHTML = 
+                    '<p style="text-align: center; color: #999;">Nu există imagini pentru acest proiect</p>';
+            }
+        }
+
+        function displayImagini(imagini) {
+            const container = document.getElementById('galerie-imagini');
+            
+            if (!imagini || imagini.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📸</div>
+                            <h3>Nu există imagini pentru acest proiect</h3>
+                            <p>Adaugă prima imagine pentru a începe galeria</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = imagini.map(img => {
+                const badgeClass = `badge-${img.tipImagine}`;
+                const tipLabel = {
+                    'schita': 'Schită',
+                    'randare': 'Randare',
+                    'final': 'Final'
+                }[img.tipImagine] || img.tipImagine;
+
+                return `
+                    <div class="image-card" onclick="viewImage(${img.id})">
+                        <img src="${img.urlImagine}" alt="${img.numeFisier}" loading="lazy">
+                        <div class="image-card-content">
+                            <div class="image-card-title">
+                                <span>${img.numeFisier}</span>
+                                <span class="image-type-badge ${badgeClass}">${tipLabel}</span>
+                            </div>
+                            ${img.descriere ? `<div class="image-card-desc">${img.descriere}</div>` : ''}
+                            <div style="font-size: 12px; color: #999;">
+                                ${formatDate(img.dataUpload)}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterImagini(tip) {
+            currentFilter = tip;
+            
+            // Actualizează butoanele
+            document.querySelectorAll('[id^="filter-"]').forEach(btn => {
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-sm');
+            });
+            document.getElementById(`filter-${tip}`).classList.add('btn-primary');
+
+            // Filtrează
+            const imaginiFiltrate = tip === 'toate' 
+                ? toateImagini 
+                : toateImagini.filter(img => img.tipImagine === tip);
+            
+            displayImagini(imaginiFiltrate);
+        }
+
+        function openUploadImageModal() {
+            document.getElementById('uploadImageForm').reset();
+            document.getElementById('image-preview').style.display = 'none';
+            document.getElementById('uploadImageModal').classList.add('active');
+        }
+
+        function closeUploadImageModal() {
+            document.getElementById('uploadImageModal').classList.remove('active');
+        }
+
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Verifică dimensiunea
+            if (file.size > 10 * 1024 * 1024) {
+                showError('Fișierul este prea mare. Maxim 10MB');
+                event.target.value = '';
+                return;
+            }
+
+            // Afișează preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('preview-img').src = e.target.result;
+                document.getElementById('image-preview').style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        async function uploadImage(event) {
+            event.preventDefault();
+
+            const fileInput = document.getElementById('image-file');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                showError('Te rog selectează o imagine');
+                return;
+            }
+
+            // Creează FormData
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('ProiectId', proiectId);
+            formData.append('TipImagine', document.getElementById('tip-imagine').value);
+            formData.append('Descriere', document.getElementById('descriere-imagine').value || '');
+            formData.append('Ordine', document.getElementById('ordine-imagine').value || 0);
+
+            try {
+                await API.uploadImagine(formData);
+                showSuccess('Imagine încărcată cu succes!');
+                closeUploadImageModal();
+                loadImagini();
+            } catch (error) {
+                console.error('Upload error:', error);
+                showError('Eroare la incarcarea imaginii');
+            }
+        }
+
+        async function viewImage(imageId) {
+            try {
+                const imagine = await API.getImagine(imageId);
+                currentImageId = imagine.id;
+                
+                const tipLabel = {
+                    'schita': 'Schită',
+                    'randare': 'Randare',
+                    'final': 'Final'
+                }[imagine.tipImagine] || imagine.tipImagine;
+
+                document.getElementById('view-image-title').textContent = imagine.numeFisier;
+                document.getElementById('view-image-large').src = imagine.urlImagine;
+                document.getElementById('view-image-tip').textContent = tipLabel;
+                document.getElementById('view-image-descriere').textContent = imagine.descriere || '-';
+                document.getElementById('view-image-data').textContent = formatDate(imagine.dataUpload);
+                
+                document.getElementById('viewImageModal').classList.add('active');
+            } catch (error) {
+                showError('Eroare la încărcarea imaginii');
+            }
+        }
+
+        function closeViewImageModal() {
+            document.getElementById('viewImageModal').classList.remove('active');
+            currentImageId = null;
+        }
+
+        async function deleteCurrentImage() {
+            if (!currentImageId) return;
+
+            if (confirm('Sigur vrei să ștergi această imagine?\n\nAceastă acțiune nu poate fi anulată.')) {
+                try {
+                    await API.deleteImagine(currentImageId);
+                    showSuccess('Imagine ștearsă cu succes!');
+                    closeViewImageModal();
+                    loadImagini();
+                } catch (error) {
+                    showError('Eroare la ștergerea imaginii');
+                }
+            }
+        }
+
+        // Event listeners pentru modal-uri
+        window.addEventListener('click', function(event) {
+            if (event.target === document.getElementById('uploadImageModal')) {
+                closeUploadImageModal();
+            }
+            if (event.target === document.getElementById('viewImageModal')) {
+                closeViewImageModal();
+            }
+        });
+
+        // Încarcă imagini când pagina se încarcă
+        if (typeof proiectId !== 'undefined' && proiectId) {
+            loadImagini();
         }
     </script>
 </body>

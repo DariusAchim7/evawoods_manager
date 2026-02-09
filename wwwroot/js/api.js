@@ -153,6 +153,62 @@ const API = {
         return await this.request('DELETE', `/CalculCant/${id}`);
     },
     
+    // Imagini Proiect - NOU
+    async getImaginiByProiect(proiectId) {
+        return await this.request('GET', `/ImaginiProiect/Proiect/${proiectId}`);
+    },
+
+    async getImagine(id) {
+        return await this.request('GET', `/ImaginiProiect/${id}`);
+    },
+
+    async uploadImagine(formData) {
+        // Special handling pentru FormData (multipart/form-data)
+        const options = {
+            method: 'POST',
+            body: formData
+            // NU setăm Content-Type pentru FormData - browserul o face automat
+        };
+        
+        try {
+            showLoading();
+            const response = await fetch(`${API_BASE_URL}/ImaginiProiect/Upload`, options);
+            
+            const contentType = response.headers.get("content-type");
+            let result;
+            
+            if (contentType && contentType.indexOf("application/json") !== -1) {
+                result = await response.json();
+            } else {
+                if (response.ok) {
+                    hideLoading();
+                    return { success: true };
+                }
+                throw new Error('Eroare la comunicarea cu serverul');
+            }
+            
+            if (!response.ok) {
+                throw new Error(result.message || 'Eroare la upload imagine');
+            }
+            
+            hideLoading();
+            return result;
+        } catch (error) {
+            hideLoading();
+            console.error('API Error:', error);
+            showError(error.message);
+            throw error;
+        }
+    },
+
+    async updateImagine(id, data) {
+        return await this.request('PUT', `/ImaginiProiect/${id}`, data);
+    },
+
+    async deleteImagine(id) {
+        return await this.request('DELETE', `/ImaginiProiect/${id}`);
+    },
+
     // Funcție generică pentru cereri HTTP
     async request(method, endpoint, data = null) {
         const options = {
@@ -294,3 +350,5 @@ function confirmDelete(itemName) {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = API;
 }
+
+console.log('API methods:', Object.keys(API));
