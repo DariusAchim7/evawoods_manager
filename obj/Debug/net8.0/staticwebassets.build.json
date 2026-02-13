@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "9yIPX5aqwhBz+ttiu8IwXN9OWG0BfFJo+MVg9uz6P2U=",
+  "Hash": "7MnnikPoQMuAGvePMzp9Qj6wFBrY3hx70kH9fVM2QKY=",
   "Source": "AtelierTamplarie",
   "BasePath": "_content/AtelierTamplarie",
   "Mode": "Default",
@@ -52,8 +52,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "ou861myylq",
-      "Integrity": "UMtpLyefMeoIOHBQAfPswAoRNRP9Nm9FRv+l1tU6yas=",
+      "Fingerprint": "wkkpahbu8h",
+      "Integrity": "kG0rtdewm8qLAkomRWT8g9vOxp8PveDgBIItTeZYZDQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\client-detalii.html"
@@ -73,8 +73,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "2opcw9i6za",
-      "Integrity": "8pDMgQCe+mVJmoycBwCRdtLK2t9Aw6uoDq6r56xkMnY=",
+      "Fingerprint": "hox3a3diui",
+      "Integrity": "v6zCLNmkVg/ICpJmo+ej7NvJ6lgWCKzBc/feL6oYrP4=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\clienti.html"
@@ -115,8 +115,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "9gzgxnm9xw",
-      "Integrity": "h8tkT+qZykDfDUOdAKR2VQVKBH5xK+eyLaFO2uBCn7o=",
+      "Fingerprint": "njzx5z9f8o",
+      "Integrity": "zextKNGibtTtBf24e5HF3ZaJB/dbCmov3GPAeoepTGE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\index.html"
@@ -199,8 +199,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "bj06brcjv6",
-      "Integrity": "N/+nfpWbC1c1jVf+MQfCAXMbjuaPSyuhSgyCYIGZjhw=",
+      "Fingerprint": "k6r5otksbp",
+      "Integrity": "3ASLO9ufVflZt2ppD/Tvw2Uttr4X7IOhbwCOEsCOnig=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\proiect-detalii.html"
@@ -220,8 +220,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "xm3rqekw81",
-      "Integrity": "1yLsi18GFQ7qyqE2xN49SFLmBoZ09XElXanVOWW0MKQ=",
+      "Fingerprint": "t8dtesd2cg",
+      "Integrity": "swlOBXvTKV66v1dwzZbVWHXjfQjFA+5TmUwzjKCpwm0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\proiecte.html"
@@ -241,19 +241,19 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "kqbu7yd2bh",
-      "Integrity": "FOqdcoa/9XXjQtwyRRvuw1U+wTK3D/0ScKXJL0MCrJE=",
+      "Fingerprint": "uozrvl9jle",
+      "Integrity": "ks9OO9o0SmjabV2/qfXVBOm6iWEqsntIoXm2xlTV/eM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\stoc.html"
     },
     {
-      "Identity": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\uploads\\proiecte\\2f389532-097c-4731-bbe3-ce78799feb39.png",
+      "Identity": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\uploads\\proiecte\\5313eeee-6559-4b05-b567-bfcb4e3d06f3.png",
       "SourceId": "AtelierTamplarie",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\",
       "BasePath": "_content/AtelierTamplarie",
-      "RelativePath": "uploads/proiecte/2f389532-097c-4731-bbe3-ce78799feb39#[.{fingerprint}]?.png",
+      "RelativePath": "uploads/proiecte/5313eeee-6559-4b05-b567-bfcb4e3d06f3#[.{fingerprint}]?.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -262,11 +262,11 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "mx36utuyp3",
-      "Integrity": "aiv3r/dDsfNGwasqY9aFAU3vCHDHY50OBQE9G1Na7F8=",
+      "Fingerprint": "3cd32zjbqw",
+      "Integrity": "QwS/h1Ukviwx/JME8iZEOzN5NWjQcPWHGkJUV00qzOM=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\proiecte\\2f389532-097c-4731-bbe3-ce78799feb39.png"
+      "OriginalItemSpec": "wwwroot\\uploads\\proiecte\\5313eeee-6559-4b05-b567-bfcb4e3d06f3.png"
     },
     {
       "Identity": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\uploads\\proiecte\\c6e29b67-8e12-4748-b6f3-5ce22aafd0df.jpeg",
@@ -405,7 +405,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "16738"
+          "Value": "16730"
         },
         {
           "Name": "Content-Type",
@@ -413,11 +413,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"UMtpLyefMeoIOHBQAfPswAoRNRP9Nm9FRv+l1tU6yas=\""
+          "Value": "\"kG0rtdewm8qLAkomRWT8g9vOxp8PveDgBIItTeZYZDQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Feb 2026 07:24:33 GMT"
+          "Value": "Mon, 09 Feb 2026 13:43:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -427,12 +427,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-UMtpLyefMeoIOHBQAfPswAoRNRP9Nm9FRv+l1tU6yas="
+          "Value": "sha256-kG0rtdewm8qLAkomRWT8g9vOxp8PveDgBIItTeZYZDQ="
         }
       ]
     },
     {
-      "Route": "client-detalii.ou861myylq.html",
+      "Route": "client-detalii.wkkpahbu8h.html",
       "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\client-detalii.html",
       "Selectors": [],
       "ResponseHeaders": [
@@ -442,7 +442,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "16738"
+          "Value": "16730"
         },
         {
           "Name": "Content-Type",
@@ -450,11 +450,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"UMtpLyefMeoIOHBQAfPswAoRNRP9Nm9FRv+l1tU6yas=\""
+          "Value": "\"kG0rtdewm8qLAkomRWT8g9vOxp8PveDgBIItTeZYZDQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Feb 2026 07:24:33 GMT"
+          "Value": "Mon, 09 Feb 2026 13:43:55 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -464,7 +464,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "ou861myylq"
+          "Value": "wkkpahbu8h"
         },
         {
           "Name": "label",
@@ -472,12 +472,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-UMtpLyefMeoIOHBQAfPswAoRNRP9Nm9FRv+l1tU6yas="
+          "Value": "sha256-kG0rtdewm8qLAkomRWT8g9vOxp8PveDgBIItTeZYZDQ="
         }
       ]
     },
     {
-      "Route": "clienti.2opcw9i6za.html",
+      "Route": "clienti.hox3a3diui.html",
       "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\clienti.html",
       "Selectors": [],
       "ResponseHeaders": [
@@ -487,7 +487,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9287"
+          "Value": "9279"
         },
         {
           "Name": "Content-Type",
@@ -495,11 +495,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"8pDMgQCe+mVJmoycBwCRdtLK2t9Aw6uoDq6r56xkMnY=\""
+          "Value": "\"v6zCLNmkVg/ICpJmo+ej7NvJ6lgWCKzBc/feL6oYrP4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Feb 2026 07:42:28 GMT"
+          "Value": "Mon, 09 Feb 2026 13:43:57 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -509,7 +509,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "2opcw9i6za"
+          "Value": "hox3a3diui"
         },
         {
           "Name": "label",
@@ -517,7 +517,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-8pDMgQCe+mVJmoycBwCRdtLK2t9Aw6uoDq6r56xkMnY="
+          "Value": "sha256-v6zCLNmkVg/ICpJmo+ej7NvJ6lgWCKzBc/feL6oYrP4="
         }
       ]
     },
@@ -532,7 +532,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9287"
+          "Value": "9279"
         },
         {
           "Name": "Content-Type",
@@ -540,11 +540,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"8pDMgQCe+mVJmoycBwCRdtLK2t9Aw6uoDq6r56xkMnY=\""
+          "Value": "\"v6zCLNmkVg/ICpJmo+ej7NvJ6lgWCKzBc/feL6oYrP4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Feb 2026 07:42:28 GMT"
+          "Value": "Mon, 09 Feb 2026 13:43:57 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -554,7 +554,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-8pDMgQCe+mVJmoycBwCRdtLK2t9Aw6uoDq6r56xkMnY="
+          "Value": "sha256-v6zCLNmkVg/ICpJmo+ej7NvJ6lgWCKzBc/feL6oYrP4="
         }
       ]
     },
@@ -641,51 +641,6 @@
       ]
     },
     {
-      "Route": "index.9gzgxnm9xw.html",
-      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\index.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "9347"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"h8tkT+qZykDfDUOdAKR2VQVKBH5xK+eyLaFO2uBCn7o=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 06 Feb 2026 14:42:06 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "9gzgxnm9xw"
-        },
-        {
-          "Name": "label",
-          "Value": "index.html"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-h8tkT+qZykDfDUOdAKR2VQVKBH5xK+eyLaFO2uBCn7o="
-        }
-      ]
-    },
-    {
       "Route": "index.html",
       "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\index.html",
       "Selectors": [],
@@ -696,7 +651,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "9347"
+          "Value": "9339"
         },
         {
           "Name": "Content-Type",
@@ -704,11 +659,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"h8tkT+qZykDfDUOdAKR2VQVKBH5xK+eyLaFO2uBCn7o=\""
+          "Value": "\"zextKNGibtTtBf24e5HF3ZaJB/dbCmov3GPAeoepTGE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 06 Feb 2026 14:42:06 GMT"
+          "Value": "Tue, 10 Feb 2026 10:46:51 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -718,7 +673,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-h8tkT+qZykDfDUOdAKR2VQVKBH5xK+eyLaFO2uBCn7o="
+          "Value": "sha256-zextKNGibtTtBf24e5HF3ZaJB/dbCmov3GPAeoepTGE="
+        }
+      ]
+    },
+    {
+      "Route": "index.njzx5z9f8o.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "9339"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"zextKNGibtTtBf24e5HF3ZaJB/dbCmov3GPAeoepTGE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 10 Feb 2026 10:46:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "njzx5z9f8o"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-zextKNGibtTtBf24e5HF3ZaJB/dbCmov3GPAeoepTGE="
         }
       ]
     },
@@ -969,51 +969,6 @@
       ]
     },
     {
-      "Route": "proiect-detalii.bj06brcjv6.html",
-      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\proiect-detalii.html",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "58790"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/html"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"N/+nfpWbC1c1jVf+MQfCAXMbjuaPSyuhSgyCYIGZjhw=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 09 Feb 2026 11:51:37 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "bj06brcjv6"
-        },
-        {
-          "Name": "label",
-          "Value": "proiect-detalii.html"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-N/+nfpWbC1c1jVf+MQfCAXMbjuaPSyuhSgyCYIGZjhw="
-        }
-      ]
-    },
-    {
       "Route": "proiect-detalii.html",
       "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\proiect-detalii.html",
       "Selectors": [],
@@ -1024,7 +979,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "58790"
+          "Value": "58782"
         },
         {
           "Name": "Content-Type",
@@ -1032,11 +987,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"N/+nfpWbC1c1jVf+MQfCAXMbjuaPSyuhSgyCYIGZjhw=\""
+          "Value": "\"3ASLO9ufVflZt2ppD/Tvw2Uttr4X7IOhbwCOEsCOnig=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 09 Feb 2026 11:51:37 GMT"
+          "Value": "Mon, 09 Feb 2026 13:43:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1046,7 +1001,52 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-N/+nfpWbC1c1jVf+MQfCAXMbjuaPSyuhSgyCYIGZjhw="
+          "Value": "sha256-3ASLO9ufVflZt2ppD/Tvw2Uttr4X7IOhbwCOEsCOnig="
+        }
+      ]
+    },
+    {
+      "Route": "proiect-detalii.k6r5otksbp.html",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\proiect-detalii.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "58782"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3ASLO9ufVflZt2ppD/Tvw2Uttr4X7IOhbwCOEsCOnig=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 09 Feb 2026 13:43:56 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "k6r5otksbp"
+        },
+        {
+          "Name": "label",
+          "Value": "proiect-detalii.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3ASLO9ufVflZt2ppD/Tvw2Uttr4X7IOhbwCOEsCOnig="
         }
       ]
     },
@@ -1061,7 +1061,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "13558"
+          "Value": "13550"
         },
         {
           "Name": "Content-Type",
@@ -1069,11 +1069,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"1yLsi18GFQ7qyqE2xN49SFLmBoZ09XElXanVOWW0MKQ=\""
+          "Value": "\"swlOBXvTKV66v1dwzZbVWHXjfQjFA+5TmUwzjKCpwm0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 06 Feb 2026 14:40:41 GMT"
+          "Value": "Mon, 09 Feb 2026 13:43:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1083,12 +1083,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-1yLsi18GFQ7qyqE2xN49SFLmBoZ09XElXanVOWW0MKQ="
+          "Value": "sha256-swlOBXvTKV66v1dwzZbVWHXjfQjFA+5TmUwzjKCpwm0="
         }
       ]
     },
     {
-      "Route": "proiecte.xm3rqekw81.html",
+      "Route": "proiecte.t8dtesd2cg.html",
       "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\proiecte.html",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1098,7 +1098,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "13558"
+          "Value": "13550"
         },
         {
           "Name": "Content-Type",
@@ -1106,11 +1106,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"1yLsi18GFQ7qyqE2xN49SFLmBoZ09XElXanVOWW0MKQ=\""
+          "Value": "\"swlOBXvTKV66v1dwzZbVWHXjfQjFA+5TmUwzjKCpwm0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 06 Feb 2026 14:40:41 GMT"
+          "Value": "Mon, 09 Feb 2026 13:43:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1120,7 +1120,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "xm3rqekw81"
+          "Value": "t8dtesd2cg"
         },
         {
           "Name": "label",
@@ -1128,7 +1128,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-1yLsi18GFQ7qyqE2xN49SFLmBoZ09XElXanVOWW0MKQ="
+          "Value": "sha256-swlOBXvTKV66v1dwzZbVWHXjfQjFA+5TmUwzjKCpwm0="
         }
       ]
     },
@@ -1143,7 +1143,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "18110"
+          "Value": "18102"
         },
         {
           "Name": "Content-Type",
@@ -1151,11 +1151,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"FOqdcoa/9XXjQtwyRRvuw1U+wTK3D/0ScKXJL0MCrJE=\""
+          "Value": "\"ks9OO9o0SmjabV2/qfXVBOm6iWEqsntIoXm2xlTV/eM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Feb 2026 07:25:49 GMT"
+          "Value": "Mon, 09 Feb 2026 13:43:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1165,12 +1165,12 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-FOqdcoa/9XXjQtwyRRvuw1U+wTK3D/0ScKXJL0MCrJE="
+          "Value": "sha256-ks9OO9o0SmjabV2/qfXVBOm6iWEqsntIoXm2xlTV/eM="
         }
       ]
     },
     {
-      "Route": "stoc.kqbu7yd2bh.html",
+      "Route": "stoc.uozrvl9jle.html",
       "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\stoc.html",
       "Selectors": [],
       "ResponseHeaders": [
@@ -1180,7 +1180,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "18110"
+          "Value": "18102"
         },
         {
           "Name": "Content-Type",
@@ -1188,11 +1188,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"FOqdcoa/9XXjQtwyRRvuw1U+wTK3D/0ScKXJL0MCrJE=\""
+          "Value": "\"ks9OO9o0SmjabV2/qfXVBOm6iWEqsntIoXm2xlTV/eM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Tue, 03 Feb 2026 07:25:49 GMT"
+          "Value": "Mon, 09 Feb 2026 13:43:34 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1202,7 +1202,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "kqbu7yd2bh"
+          "Value": "uozrvl9jle"
         },
         {
           "Name": "label",
@@ -1210,13 +1210,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-FOqdcoa/9XXjQtwyRRvuw1U+wTK3D/0ScKXJL0MCrJE="
+          "Value": "sha256-ks9OO9o0SmjabV2/qfXVBOm6iWEqsntIoXm2xlTV/eM="
         }
       ]
     },
     {
-      "Route": "uploads/proiecte/2f389532-097c-4731-bbe3-ce78799feb39.mx36utuyp3.png",
-      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\uploads\\proiecte\\2f389532-097c-4731-bbe3-ce78799feb39.png",
+      "Route": "uploads/proiecte/5313eeee-6559-4b05-b567-bfcb4e3d06f3.3cd32zjbqw.png",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\uploads\\proiecte\\5313eeee-6559-4b05-b567-bfcb4e3d06f3.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1225,7 +1225,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "200413"
+          "Value": "203493"
         },
         {
           "Name": "Content-Type",
@@ -1233,11 +1233,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"aiv3r/dDsfNGwasqY9aFAU3vCHDHY50OBQE9G1Na7F8=\""
+          "Value": "\"QwS/h1Ukviwx/JME8iZEOzN5NWjQcPWHGkJUV00qzOM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 09 Feb 2026 11:58:36 GMT"
+          "Value": "Tue, 10 Feb 2026 10:50:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1247,21 +1247,21 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "mx36utuyp3"
+          "Value": "3cd32zjbqw"
         },
         {
           "Name": "label",
-          "Value": "uploads/proiecte/2f389532-097c-4731-bbe3-ce78799feb39.png"
+          "Value": "uploads/proiecte/5313eeee-6559-4b05-b567-bfcb4e3d06f3.png"
         },
         {
           "Name": "integrity",
-          "Value": "sha256-aiv3r/dDsfNGwasqY9aFAU3vCHDHY50OBQE9G1Na7F8="
+          "Value": "sha256-QwS/h1Ukviwx/JME8iZEOzN5NWjQcPWHGkJUV00qzOM="
         }
       ]
     },
     {
-      "Route": "uploads/proiecte/2f389532-097c-4731-bbe3-ce78799feb39.png",
-      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\uploads\\proiecte\\2f389532-097c-4731-bbe3-ce78799feb39.png",
+      "Route": "uploads/proiecte/5313eeee-6559-4b05-b567-bfcb4e3d06f3.png",
+      "AssetFile": "C:\\Darius\\C#-Training\\EvaWoods_Manager\\evawoods_manager\\wwwroot\\uploads\\proiecte\\5313eeee-6559-4b05-b567-bfcb4e3d06f3.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -1270,7 +1270,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "200413"
+          "Value": "203493"
         },
         {
           "Name": "Content-Type",
@@ -1278,11 +1278,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"aiv3r/dDsfNGwasqY9aFAU3vCHDHY50OBQE9G1Na7F8=\""
+          "Value": "\"QwS/h1Ukviwx/JME8iZEOzN5NWjQcPWHGkJUV00qzOM=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 09 Feb 2026 11:58:36 GMT"
+          "Value": "Tue, 10 Feb 2026 10:50:56 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1292,7 +1292,7 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-aiv3r/dDsfNGwasqY9aFAU3vCHDHY50OBQE9G1Na7F8="
+          "Value": "sha256-QwS/h1Ukviwx/JME8iZEOzN5NWjQcPWHGkJUV00qzOM="
         }
       ]
     },
